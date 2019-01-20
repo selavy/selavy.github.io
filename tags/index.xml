@@ -10,5 +10,14 @@
 	<atom:link href="https://selavy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Tests</title>
+      <link>https://selavy.github.io/tags/tests/</link>
+      <pubDate>Sat, 19 Jan 2019 19:35:59 -0800</pubDate>
+      
+      <guid>https://selavy.github.io/tags/tests/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
