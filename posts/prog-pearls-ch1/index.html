@@ -91,7 +91,7 @@
         </li>
         
 
-        <li>5 min read</li>
+        <li>6 min read</li>
     </ul>
 </aside>
     
@@ -300,51 +300,6 @@
 
 <p>Q: Run-time efficiency was an important part of the design goal, and the resulting program was efficient enough. Implement the bitmap sort on your system and measure its run time; how does it compare to the system sort and to the sorts in Problem 1? Assume that <em>n</em>=10,000,000, and that the input file contains 1,000,000 integers.</p>
 
-<p>If you take Problem 3 seriously, you will face the problem of generating <em>k</em> integers less than <em>n</em> without duplicates.  The simplest approach uses the first <em>k</em> positive integers.  This extreme data set wo&rsquo;t alter the run time of the bitmap method by much, but it might skew the run time of a system sort. How could you generate a file of k unique random integers between 0 and <em>n</em> - 1 in random order? Strive for a short program that is also efficient.</p>
-
-<h2 id="generating-k-unique-random-integers-between-0-and-n-1">Generating <em>k</em> unique random integers between 0 and <em>n</em> - 1</h2>
-
-<p>Cheating with numpy:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-
-M <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>
-N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>
-vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(range(M), N, replace<span style="color:#f92672">=</span>False)
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join([str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> vals]))</code></pre></div>
-<p>Actually solving it with C++:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;random&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
-{
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
-
-    <span style="color:#75715e">// generate numbers 0..k-1
-</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> range;
-    range.reserve(k);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; <span style="color:#f92672">++</span>i) {
-        range.push_back(i);
-    }
-
-    <span style="color:#75715e">// pick 2 random indices and swap k/2 times
-</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>random_device rd;
-    std<span style="color:#f92672">::</span>mt19937 gen(rd());
-    std<span style="color:#f92672">::</span>uniform_int_distribution<span style="color:#f92672">&lt;&gt;</span> dis(<span style="color:#ae81ff">0</span>, k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#f92672">++</span>i) {
-        <span style="color:#66d9ef">int</span> p1 <span style="color:#f92672">=</span> dis(gen);
-        <span style="color:#66d9ef">int</span> p2 <span style="color:#f92672">=</span> dis(gen);
-        std<span style="color:#f92672">::</span>iter_swap(<span style="color:#f92672">&amp;</span>range[p1], <span style="color:#f92672">&amp;</span>range[p2]);
-    }
-
-    <span style="color:#75715e">// take first n elements as output
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; <span style="color:#f92672">++</span>i) {
-        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, range[i]);
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div>
 <h2 id="bitmap-sort">BitMap Sort</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
@@ -405,6 +360,120 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 </tr>
 </tbody>
 </table>
+
+<h1 id="problem-4">Problem 4</h1>
+
+<p>If you take Problem 3 seriously, you will face the problem of generating <em>k</em> integers less than <em>n</em> without duplicates.  The simplest approach uses the first <em>k</em> positive integers.  This extreme data set wo&rsquo;t alter the run time of the bitmap method by much, but it might skew the run time of a system sort. How could you generate a file of k unique random integers between 0 and <em>n</em> - 1 in random order? Strive for a short program that is also efficient.</p>
+
+<h2 id="numpy-solution">Numpy solution</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+M <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>
+N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>
+vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(range(M), N, replace<span style="color:#f92672">=</span>False)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join([str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> vals]))</code></pre></div>
+<h2 id="c-solution">C++ Solution</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;random&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
+{
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
+
+    <span style="color:#75715e">// generate numbers 0..k-1
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> range;
+    range.reserve(k);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; <span style="color:#f92672">++</span>i) {
+        range.push_back(i);
+    }
+
+    <span style="color:#75715e">// pick 2 random indices and swap k/2 times
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>random_device rd;
+    std<span style="color:#f92672">::</span>mt19937 gen(rd());
+    std<span style="color:#f92672">::</span>uniform_int_distribution<span style="color:#f92672">&lt;&gt;</span> dis(<span style="color:#ae81ff">0</span>, k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#f92672">++</span>i) {
+        <span style="color:#66d9ef">int</span> p1 <span style="color:#f92672">=</span> dis(gen);
+        <span style="color:#66d9ef">int</span> p2 <span style="color:#f92672">=</span> dis(gen);
+        std<span style="color:#f92672">::</span>iter_swap(<span style="color:#f92672">&amp;</span>range[p1], <span style="color:#f92672">&amp;</span>range[p2]);
+    }
+
+    <span style="color:#75715e">// take first n elements as output
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; <span style="color:#f92672">++</span>i) {
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, range[i]);
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<h1 id="problem-5">Problem 5</h1>
+
+<p>The programmer said that he had about a megabyte of free storage, but the code we sketched uses 1.25 megabytes. He was able to scrounge the extra space without much trouble. If the megabyte had been a hard and fast boundary, what would you have recommended? What is the run time of your algorithm?</p>
+
+<p>My initial thought is to just make multiple passes over the input file.  This technique doesn&rsquo;t work if you need an online algorithm though.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdint&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> Limit <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">20</span>; <span style="color:#75715e">// 1 MB
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> MaxValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
+{
+    <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>)
+    {
+        fprintf(stderr, <span style="color:#e6db74">&#34;Usage: %s &lt;FILE&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
+        exit(<span style="color:#ae81ff">1</span>);
+    }
+
+    FILE<span style="color:#f92672">*</span> fp <span style="color:#f92672">=</span> fopen(argv[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;r&#34;</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>fp)
+    {
+        fprintf(stderr, <span style="color:#e6db74">&#34;Unable to open file: &#39;%s&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]);
+        exit(<span style="color:#ae81ff">1</span>);
+    }
+
+    uint32_t bitmap[Limit<span style="color:#f92672">/</span><span style="color:#ae81ff">32</span>];
+    <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
+    <span style="color:#66d9ef">int</span> val;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> base <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; base <span style="color:#f92672">&lt;</span> MaxValue; base <span style="color:#f92672">+=</span> Limit)
+    {
+        rewind(fp);
+        memset(<span style="color:#f92672">&amp;</span>bitmap[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(bitmap));
+        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> lo <span style="color:#f92672">=</span> base;
+        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> hi <span style="color:#f92672">=</span> base <span style="color:#f92672">+</span> Limit;
+
+        <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), fp) <span style="color:#f92672">!=</span> NULL)
+        {
+            val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(val <span style="color:#f92672">&gt;=</span> lo <span style="color:#f92672">&amp;&amp;</span> val <span style="color:#f92672">&lt;</span> hi))
+                <span style="color:#66d9ef">continue</span>;
+            val <span style="color:#f92672">-=</span> base;
+            <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> val <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span>;
+            <span style="color:#66d9ef">int</span> off <span style="color:#f92672">=</span> val <span style="color:#f92672">%</span> <span style="color:#ae81ff">32</span>;
+            bitmap[idx] <span style="color:#f92672">|=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>uint32_t<span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> off;
+        }
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Limit; <span style="color:#f92672">++</span>i)
+        {
+            <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> i <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span>;
+            <span style="color:#66d9ef">int</span> off <span style="color:#f92672">=</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">32</span>;
+            <span style="color:#66d9ef">if</span> ((bitmap[idx] <span style="color:#f92672">&amp;</span> (<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>uint32_t<span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> off)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+            {
+                printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i <span style="color:#f92672">+</span> base);
+            }
+        }
+    }
+
+    fclose(fp);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<h1 id="problem-6">Problem 6</h1>
+
+<p>What would you recommend to the programmer if instead of saying that each integer could appear at most once, he told you that each integer could appear at most ten times? How would your solution change as a function of the amount of available storage?</p>
+
+<p>Idea is to keep 10 million 4-bit cells, each time a number is seen, increment the appropriate cell.</p>
 
 
 </article>
