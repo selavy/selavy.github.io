@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://selavy.github.io/posts/</loc>
-    <lastmod>2019-01-19T19:35:59-08:00</lastmod>
+    <lastmod>2019-01-19T20:47:53-08:00</lastmod>
   </url>
   
   <url>
@@ -13,8 +13,8 @@
   </url>
   
   <url>
-    <loc>https://selavy.github.io/posts/my-first-post/</loc>
-    <lastmod>2019-01-19T19:35:59-08:00</lastmod>
+    <loc>https://selavy.github.io/posts/prog-pearls-ch1/</loc>
+    <lastmod>2019-01-19T20:47:53-08:00</lastmod>
   </url>
   
   <url>
@@ -23,13 +23,26 @@
   </url>
   
   <url>
-    <loc>https://selavy.github.io/tags/</loc>
+    <loc>https://selavy.github.io/tags/exercises/</loc>
+    <lastmod>2019-01-19T20:47:53-08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://selavy.github.io/tags/tests/</loc>
-    <lastmod>2019-01-19T19:35:59-08:00</lastmod>
+    <loc>https://selavy.github.io/categories/exercises/</loc>
+    <lastmod>2019-01-19T20:47:53-08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/tags/pearls/</loc>
+    <lastmod>2019-01-19T20:47:53-08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/tags/</loc>
+    <lastmod>2019-01-19T20:47:53-08:00</lastmod>
     <priority>0</priority>
   </url>
   

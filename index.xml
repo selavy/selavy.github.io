@@ -23,14 +23,14 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
-      <title>My First Post</title>
-      <link>https://selavy.github.io/posts/my-first-post/</link>
-      <pubDate>Sat, 19 Jan 2019 19:35:59 -0800</pubDate>
+      <title>Programming Pearls: Chapter 1</title>
+      <link>https://selavy.github.io/posts/prog-pearls-ch1/</link>
+      <pubDate>Sat, 19 Jan 2019 20:47:53 -0800</pubDate>
       
-      <guid>https://selavy.github.io/posts/my-first-post/</guid>
-      <description>This is a test first post. A change!
-This is an example using code highlighting for HTML: &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt;
-Here is an example using code highlighting for C++: template &amp;lt;classKey, classValue&amp;gt; classHashTable { public: using value_type = Value; using key_type = const Key; constexpr HashTable(); ~HashTable() noexcept; Value&amp;amp; operator[](const Key) const noexcept; [[nodiscard]] constexpr size_type size() const noexcept { return _size; } private: size_type _size; T* _values; };</description>
+      <guid>https://selavy.github.io/posts/prog-pearls-ch1/</guid>
+      <description>Some notes and solutions to the Column #1: &amp;ldquo;Cracking the Oyster&amp;rdquo; in Programming Pearls by Jon Bentley.
+Lessons  Ask the right question. Similar to &amp;ldquo;5 Whys&amp;rdquo;; make sure you understand the real problem. Look for simple designs
+ &amp;ldquo;A designer knows he has arrived at perfection now when there is no longer anything to add, but when there is no longer anything to take away.&amp;rdquo; &amp;ndash; Antoine de Saint-Exupéry</description>
     </item>
     
   </channel>

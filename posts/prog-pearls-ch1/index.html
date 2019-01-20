@@ -1,0 +1,435 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>c&#39;est la vie</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Peter Lesslie" />
+  <meta name="generator" content="Hugo 0.47.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://selavy.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/selavy"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Programming Pearls: Chapter 1</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-01-19T20:47:53-08:00">Jan 19, 2019</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="https://selavy.github.io/categories/exercises/">exercises</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://selavy.github.io/tags/pearls/">#pearls</a>
+                
+                    , 
+                    <a href="https://selavy.github.io/tags/exercises/">#exercises</a>
+                
+            </em>
+        </li>
+        
+
+        <li>5 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>Some notes and solutions to the Column #1: &ldquo;Cracking the Oyster&rdquo; in Programming Pearls by Jon Bentley.</p>
+
+<h1 id="lessons">Lessons</h1>
+
+<ul>
+<li>Ask the right question. Similar to <a href="https://en.wikipedia.org/wiki/5_Whys">&ldquo;5 Whys&rdquo;</a>; make sure you understand the real problem.</li>
+
+<li><p>Look for simple designs</p>
+
+<blockquote>
+<p>&ldquo;A designer knows he has arrived at perfection now when there is no longer anything to add, but when there is no longer anything to take away.&rdquo; &ndash; Antoine de Saint-Exupéry</p>
+</blockquote></li>
+</ul>
+
+<h1 id="problem-1">Problem #1</h1>
+
+<p>Q: If memory were not scarce, how would you implement a sort in a language with libraries for representing and sorting sets?</p>
+
+<p>This solution only works if no duplicates or don&rsquo;t care about them, but actually mirrors the solution that Jon gives so I think the question is poorly worded.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> set_sort(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> input)
+{
+    std<span style="color:#f92672">::</span>set<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> s;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v: input) {
+        s.insert(v);
+    }
+    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> rv;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v: s) {
+        rv.push_back(v);
+    }
+    <span style="color:#66d9ef">return</span> rv;
+}
+</code></pre></div>
+<h1 id="problem-2">Problem #2</h1>
+
+<p>Q: How would you implement bit vectors using bitwise logical operators (such as and, or and shift)?</p>
+
+<p>In a C-style:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">[[nodiscard]]
+<span style="color:#66d9ef">constexpr</span> uint32_t make_mask(size_t bit) <span style="color:#66d9ef">noexcept</span>
+{
+    assert(bit <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>uint32_t<span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1u</span>) <span style="color:#f92672">&lt;&lt;</span> bit;
+}
+
+[[nodiscard]]
+<span style="color:#66d9ef">constexpr</span> uint32_t setbit(uint32_t bitfield, size_t bit) <span style="color:#66d9ef">noexcept</span>
+{
+    <span style="color:#66d9ef">return</span> bitfield <span style="color:#f92672">|</span> make_mask(bit);
+}
+
+[[nodiscard]]
+<span style="color:#66d9ef">constexpr</span> uint32_t clearbit(uint32_t bitfield, size_t bit) <span style="color:#66d9ef">noexcept</span>
+{
+    <span style="color:#66d9ef">return</span> bitfield <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>make_mask(bit);
+}
+
+[[nodiscard]]
+<span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> isset(uint32_t bitfield, size_t bit) <span style="color:#66d9ef">noexcept</span>
+{
+    <span style="color:#66d9ef">return</span> (bitfield <span style="color:#f92672">&amp;</span> make_mask(bit)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<p>In C++-style, which supports bitvectors that are larger than 64-bits:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> detail {
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t Bytes<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Storage</span> {
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">constexpr</span> Storage() <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">:</span> val{<span style="color:#ae81ff">0u</span>} {}
+
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> set(size_t bit) <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">const</span> size_t idx <span style="color:#f92672">=</span> bit <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>;
+        <span style="color:#66d9ef">const</span> size_t off <span style="color:#f92672">=</span> bit <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>;
+        val[idx] <span style="color:#f92672">|=</span> mask(off);
+    }
+
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> isset(size_t bit) <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">const</span> size_t idx <span style="color:#f92672">=</span> bit <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>;
+        <span style="color:#66d9ef">const</span> size_t off <span style="color:#f92672">=</span> bit <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>;
+        <span style="color:#66d9ef">return</span> (val[idx] <span style="color:#f92672">&amp;</span> mask(off)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0u</span>;
+    }
+
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> clear() <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">++</span>i) {
+            val[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0u</span>;
+        }
+    }
+
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> none() <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">++</span>i) {
+            <span style="color:#66d9ef">if</span> (val[i] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">return</span> false;
+            }
+        }
+        <span style="color:#66d9ef">return</span> true;
+    }
+
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> all() <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">const</span> uint8_t allset <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>uint8_t{<span style="color:#ae81ff">0</span>};
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">++</span>i) {
+            <span style="color:#66d9ef">if</span> (val[i] <span style="color:#f92672">!=</span> allset) {
+                <span style="color:#66d9ef">return</span> false;
+            }
+        }
+        <span style="color:#66d9ef">return</span> true;
+    }
+
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> uint8_t mask(size_t off) <span style="color:#66d9ef">noexcept</span>
+    {
+        assert(off <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">sizeof</span>(uint8_t)<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);
+        <span style="color:#66d9ef">return</span> uint8_t{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">&lt;&lt;</span> off;
+    }
+
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">constexpr</span> size_t n_bytes <span style="color:#f92672">=</span> Bytes;
+    std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span>uint8_t, n_bytes<span style="color:#f92672">&gt;</span> val;
+};
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">struct</span> StorageBase {
+    <span style="color:#66d9ef">using</span> value_type <span style="color:#f92672">=</span> T;
+    <span style="color:#66d9ef">static_assert</span>(std<span style="color:#f92672">::</span>is_unsigned_v<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">==</span> true, <span style="color:#e6db74">&#34;Type must be unsigned&#34;</span>);
+
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#a6e22e">StorageBase</span>() <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">:</span> val{<span style="color:#ae81ff">0</span>} {}
+
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> set(size_t bit) <span style="color:#66d9ef">noexcept</span>
+    {
+        val <span style="color:#f92672">|=</span> mask(bit);
+    }
+
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> isset(size_t bit) <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">return</span> (val <span style="color:#f92672">&amp;</span> mask(bit)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0u</span>;
+    }
+
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> clear() <span style="color:#66d9ef">noexcept</span>
+    {
+        val <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    }
+
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> none() <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">return</span> val <span style="color:#f92672">==</span> value_type{<span style="color:#ae81ff">0</span>};
+    }
+
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> all() <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">return</span> val <span style="color:#f92672">==</span> <span style="color:#f92672">~</span>value_type{<span style="color:#ae81ff">0</span>};
+    }
+
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+    [[nodiscard]]
+    <span style="color:#66d9ef">constexpr</span> value_type mask(size_t off) <span style="color:#66d9ef">noexcept</span>
+    {
+        assert(off <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">sizeof</span>(value_type)<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);
+        <span style="color:#66d9ef">return</span> value_type{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">&lt;&lt;</span> off;
+    }
+
+    value_type val;
+};
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span>uint8_t<span style="color:#f92672">&gt;</span>  {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span>uint16_t<span style="color:#f92672">&gt;</span> {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span>uint32_t<span style="color:#f92672">&gt;</span> {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span>uint64_t<span style="color:#f92672">&gt;</span> {};
+
+} <span style="color:#75715e">// namespace detail
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t MaxIndex<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">BitVector</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> detail<span style="color:#f92672">::</span>Storage<span style="color:#f92672">&lt;</span>MaxIndex <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span> {};
+
+<span style="color:#75715e">// usage
+</span><span style="color:#75715e"></span>TEST_CASE(<span style="color:#e6db74">&#34;Set and clear bits first BitVector&#34;</span>, <span style="color:#e6db74">&#34;[column1_2]&#34;</span>)
+{
+    BitVector<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">32</span><span style="color:#f92672">&gt;</span> bv;
+    REQUIRE(bv.isset(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">==</span> false);
+    REQUIRE(bv.none() <span style="color:#f92672">==</span> true);
+    REQUIRE(bv.all() <span style="color:#f92672">==</span> false);
+
+    bv.set(<span style="color:#ae81ff">4</span>);
+    assert(bv.isset(<span style="color:#ae81ff">4</span>) <span style="color:#f92672">==</span> true);
+    assert(bv.isset(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">==</span> false);
+    assert(bv.none() <span style="color:#f92672">==</span> false);
+    assert(bv.all() <span style="color:#f92672">==</span> false);
+}
+</code></pre></div>
+<h1 id="problem-3">Problem #3</h1>
+
+<p>Q: Run-time efficiency was an important part of the design goal, and the resulting program was efficient enough. Implement the bitmap sort on your system and measure its run time; how does it compare to the system sort and to the sorts in Problem 1? Assume that <em>n</em>=10,000,000, and that the input file contains 1,000,000 integers.</p>
+
+<p>If you take Problem 3 seriously, you will face the problem of generating <em>k</em> integers less than <em>n</em> without duplicates.  The simplest approach uses the first <em>k</em> positive integers.  This extreme data set wo&rsquo;t alter the run time of the bitmap method by much, but it might skew the run time of a system sort. How could you generate a file of k unique random integers between 0 and <em>n</em> - 1 in random order? Strive for a short program that is also efficient.</p>
+
+<h2 id="generating-k-unique-random-integers-between-0-and-n-1">Generating <em>k</em> unique random integers between 0 and <em>n</em> - 1</h2>
+
+<p>Cheating with numpy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+M <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>
+N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>
+vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(range(M), N, replace<span style="color:#f92672">=</span>False)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join([str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> vals]))</code></pre></div>
+<p>Actually solving it with C++:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;random&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
+{
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
+
+    <span style="color:#75715e">// generate numbers 0..k-1
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> range;
+    range.reserve(k);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; <span style="color:#f92672">++</span>i) {
+        range.push_back(i);
+    }
+
+    <span style="color:#75715e">// pick 2 random indices and swap k/2 times
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>random_device rd;
+    std<span style="color:#f92672">::</span>mt19937 gen(rd());
+    std<span style="color:#f92672">::</span>uniform_int_distribution<span style="color:#f92672">&lt;&gt;</span> dis(<span style="color:#ae81ff">0</span>, k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#f92672">++</span>i) {
+        <span style="color:#66d9ef">int</span> p1 <span style="color:#f92672">=</span> dis(gen);
+        <span style="color:#66d9ef">int</span> p2 <span style="color:#f92672">=</span> dis(gen);
+        std<span style="color:#f92672">::</span>iter_swap(<span style="color:#f92672">&amp;</span>range[p1], <span style="color:#f92672">&amp;</span>range[p2]);
+    }
+
+    <span style="color:#75715e">// take first n elements as output
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; <span style="color:#f92672">++</span>i) {
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, range[i]);
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<h2 id="bitmap-sort">BitMap Sort</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;bit_vector.h&#34; // from problem #2</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">constexpr</span> size_t MaxValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
+    BitVector<span style="color:#f92672">&lt;</span>MaxValue<span style="color:#f92672">&gt;</span> vec;
+    <span style="color:#66d9ef">int</span> val;
+    <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
+    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!=</span> NULL) {
+        val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
+        vec.set(val);
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MaxValue; <span style="color:#f92672">++</span>i) {
+        <span style="color:#66d9ef">if</span> (vec.isset(i)) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+<h2 id="timings">Timings</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th>Time (sec)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Debug Set Sort</td>
+<td>1.588</td>
+</tr>
+
+<tr>
+<td align="left">Release Set Sort</td>
+<td>0.705</td>
+</tr>
+
+<tr>
+<td align="left">Debug Bitmap Sort</td>
+<td>0.133</td>
+</tr>
+
+<tr>
+<td align="left">Release Bitmap Sort</td>
+<td>0.118</td>
+</tr>
+
+<tr>
+<td align="left">System Sort</td>
+<td>0.973</td>
+</tr>
+</tbody>
+</table>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://selavy.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://selavy.github.io/js/scripts.js"></script>
+</body>
+
+</html>

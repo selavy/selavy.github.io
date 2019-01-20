@@ -6,16 +6,26 @@
     <description>Recent content in Tags on c&#39;est la vie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 19 Jan 2019 20:47:53 -0800</lastBuildDate>
     
 	<atom:link href="https://selavy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Tests</title>
-      <link>https://selavy.github.io/tags/tests/</link>
-      <pubDate>Sat, 19 Jan 2019 19:35:59 -0800</pubDate>
+      <title>Exercises</title>
+      <link>https://selavy.github.io/tags/exercises/</link>
+      <pubDate>Sat, 19 Jan 2019 20:47:53 -0800</pubDate>
       
-      <guid>https://selavy.github.io/tags/tests/</guid>
+      <guid>https://selavy.github.io/tags/exercises/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pearls</title>
+      <link>https://selavy.github.io/tags/pearls/</link>
+      <pubDate>Sat, 19 Jan 2019 20:47:53 -0800</pubDate>
+      
+      <guid>https://selavy.github.io/tags/pearls/</guid>
       <description></description>
     </item>
     
