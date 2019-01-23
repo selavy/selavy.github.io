@@ -1,0 +1,349 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>c&#39;est la vie</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Peter Lesslie" />
+  <meta name="generator" content="Hugo 0.47.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://selavy.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/selavy"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Programming Pearls: Chapter 2</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-01-22T19:01:57-08:00">Jan 22, 2019</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="https://selavy.github.io/categories/exercises/">exercises</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://selavy.github.io/tags/pearls/">#pearls</a>
+                
+                    , 
+                    <a href="https://selavy.github.io/tags/exercises/">#exercises</a>
+                
+            </em>
+        </li>
+        
+
+        <li>5 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p><head>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head></p>
+
+<p>Problems for Column #2: &ldquo;Aha! Algorithms&rdquo;</p>
+
+<h1 id="lessons">Lessons</h1>
+
+<ul>
+<li>Break problem down into primitives for which there are known algorithms.</li>
+<li>&ldquo;A Problem Solver&rsquo;s Perspective&rdquo;: Good programmers are a little bit lazy: they sit back and wait for an insight rather than rushing forward with their first idea.</li>
+</ul>
+
+<h1 id="problem-1">Problem #1</h1>
+
+<p>Consider the problem of finding all the anagrmas of a given input word. How would you solve this problem given only the word and the dictionary? What if you could spend some time and space to process the dictionary before answering any queries?</p>
+
+<p>The key is to generate a hash for each word that is the same regardless of order of the letters so that anagrams will hash to the same value. The most straightforward solution is to sort the letters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> Dictionary <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">const</span> Dictionary dict <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#34;deposit&#34;</span>,
+    <span style="color:#e6db74">&#34;dopiest&#34;</span>,
+    <span style="color:#e6db74">&#34;posited&#34;</span>,
+    <span style="color:#e6db74">&#34;topside&#34;</span>,
+    <span style="color:#e6db74">&#34;peter&#34;</span>,
+    <span style="color:#e6db74">&#34;word&#34;</span>,
+    <span style="color:#e6db74">&#34;sail&#34;</span>,
+    <span style="color:#e6db74">&#34;smile&#34;</span>,
+    <span style="color:#e6db74">&#34;ant&#34;</span>,
+    <span style="color:#e6db74">&#34;tan&#34;</span>,
+};
+
+<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> sign <span style="color:#f92672">=</span> [](std<span style="color:#f92672">::</span>string w) <span style="color:#f92672">-&gt;</span> std<span style="color:#f92672">::</span>string {
+    std<span style="color:#f92672">::</span>sort(w.begin(), w.end());
+    <span style="color:#66d9ef">return</span> w;
+};
+
+<span style="color:#66d9ef">using</span> Anagrams <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span>;
+
+Anagrams <span style="color:#a6e22e">find_anagrams</span>(<span style="color:#66d9ef">const</span> Dicionary<span style="color:#f92672">&amp;</span> dict, std<span style="color:#f92672">::</span>string word)
+{
+    Anagrams anagrams;
+    <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string sig <span style="color:#f92672">=</span> sign(word);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> w: dict) {
+        <span style="color:#66d9ef">if</span> (sig <span style="color:#f92672">==</span> sign(w)) {
+            anagrams.push_back(w);
+        }
+    }
+    <span style="color:#66d9ef">return</span> anagrams; <span style="color:#75715e">// NOTE: should get NRVO
+</span><span style="color:#75715e"></span>};
+</code></pre></div>
+<p>If you can preprocess the data, then it is worth setting up a map of Hash -&gt; Vector[Words]. Then you can find the anagrams in O(1).</p>
+
+<h1 id="problem-2">Problem #2</h1>
+
+<p>Given a sequential file containing 4,300,000,000 32-bit integers, how can you find one that appears at least twice?</p>
+
+<p>4.3 TB * 4B ~= 16TB so we can&rsquo;t hold all the values in memory. First sort the integers (probably using merge sort).  Then, traverse the integers and look for any values that are equal to the previous value.</p>
+
+<h1 id="problem-3">Problem #3</h1>
+
+<p>We skimmed two vector rotation algorithms that require subtle code; implement each as a program.  How does the greatest common divisor of i and n appear in each program?</p>
+
+<h2 id="rotate-implementation">Rotate implementation:</h2>
+
+<ul>
+<li>C++ Technique: Use a tag to dispatch to different implementations of your algorithmn based on what iterator concept you&rsquo;ve been passed.</li>
+<li>C++ Technique: STL has a std::iter_swap(), which makes several of these algorithms much cleaner.</li>
+<li>Comment: C++ function signatures are getting so noisy, especially when you have attribute like [[nodiscard]], constexpr, and conditional noexcept.
+
+<ul>
+<li>I&rsquo;m still trying to find a formatting style that I like for this.</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> my {
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> BidirectionalIt<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> reverse(BidirectionalIt first,
+             BidirectionalIt last,
+             std<span style="color:#f92672">::</span>bidirectional_iterator_tag
+             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">::</span>iter_swap(first, last)))
+{
+    <span style="color:#66d9ef">while</span> ((first <span style="color:#f92672">!=</span> last) <span style="color:#f92672">&amp;&amp;</span> (first <span style="color:#f92672">!=</span> <span style="color:#f92672">--</span>last)) {
+        std<span style="color:#f92672">::</span>iter_swap(first<span style="color:#f92672">++</span>, last);
+    }
+}
+
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> RandomAccessIt<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> reverse(RandomAccessIt first, RandomAccessIt last,
+             std<span style="color:#f92672">::</span>random_access_iterator_tag
+             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">::</span>iter_swap(first, last)))
+{
+    <span style="color:#66d9ef">if</span> (first <span style="color:#f92672">==</span> last) {
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">while</span> (first <span style="color:#f92672">&lt;</span> <span style="color:#f92672">--</span>last) {
+        std<span style="color:#f92672">::</span>iter_swap(first<span style="color:#f92672">++</span>, last);
+    }
+}
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> BidirectionalIt<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> reverse(BidirectionalIt first,
+             BidirectionalIt last
+             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">::</span>iter_swap(first, last)))
+{
+    <span style="color:#66d9ef">using</span> iterator_category <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>BidirectionalIt<span style="color:#f92672">&gt;::</span>iterator_category;
+    reverse(first, last, iterator_category());
+}
+
+} <span style="color:#75715e">// namespace my
+</span><span style="color:#75715e"></span></code></pre></div>
+<h2 id="rotate-implementation-1-using-rotate">Rotate Implementation #1: using rotate</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">BidirectionalIt</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> rotate(BidirectionalIt first,
+            BidirectionalIt n_first,
+            BidirectionalIt last
+            ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(my<span style="color:#f92672">::</span>reverse(first, n_first)))
+{
+    my<span style="color:#f92672">::</span>reverse(first, n_first);
+    my<span style="color:#f92672">::</span>reverse(n_first, last);
+    my<span style="color:#f92672">::</span>reverse(first, last);
+}
+</code></pre></div>
+<h2 id="rotate-implementation-2-shufflin">Rotate Implementation #2: shufflin&rsquo;</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">I</span><span style="color:#f92672">&gt;</span>
+I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
+{
+    <span style="color:#66d9ef">while</span> (n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+        I t <span style="color:#f92672">=</span> m <span style="color:#f92672">%</span> n;
+        m <span style="color:#f92672">=</span> n;
+        n <span style="color:#f92672">=</span> t;
+    }
+    <span style="color:#66d9ef">return</span> m;
+}
+
+<span style="color:#75715e">// NOTE: Only works for random access iterators
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span><span style="color:#960050;background-color:#1e0010"> </span><span style="color:#a6e22e">It</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> rotate2(It first, It n_first, It last) <span style="color:#66d9ef">noexcept</span>
+{
+    <span style="color:#66d9ef">using</span> Distance <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>It<span style="color:#f92672">&gt;::</span>difference_type;
+    <span style="color:#66d9ef">using</span> ValueType <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>It<span style="color:#f92672">&gt;::</span>value_type;
+
+    Distance n <span style="color:#f92672">=</span> last <span style="color:#f92672">-</span> first;
+    Distance i <span style="color:#f92672">=</span> n_first <span style="color:#f92672">-</span> first;
+    Distance cycles <span style="color:#f92672">=</span> gcd(i, n);
+    <span style="color:#66d9ef">for</span> (Distance u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; u <span style="color:#f92672">&lt;</span> cycles; <span style="color:#f92672">++</span>u) {
+        Distance j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> u;
+        Distance k <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> i;
+        Distance z <span style="color:#f92672">=</span> k <span style="color:#f92672">%</span> n;
+        ValueType t <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> u);
+        <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> u) <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> j);
+        <span style="color:#66d9ef">do</span> {
+            <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> j) <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> z);
+            j <span style="color:#f92672">=</span> z;
+            k <span style="color:#f92672">+=</span> i;
+            z <span style="color:#f92672">=</span> k <span style="color:#f92672">%</span> n;
+        } <span style="color:#66d9ef">while</span> (z <span style="color:#f92672">!=</span> u);
+        <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> j) <span style="color:#f92672">=</span> t;
+    }
+}
+</code></pre></div>
+<p>In this algorithm, gcd gives the number of shuffles that are required. Note, that the STL has implementations for std::forward_iterator as well.</p>
+
+<h1 id="problem-4">Problem 4</h1>
+
+<p>Several readers pointed out that while all three rotation algorithm require time proportional to n, the juggling algorithm is apparently twice as fast as the revresal algorithm: it stores and retrieves each element of the array just once, while the reversal algorithm does so twice. Experiment with the functions to compare their speeds to real machines; be especially sensitive to issues surrounding the locality of memory references.</p>
+
+<h1 id="problem-5">Problem 5</h1>
+
+<p>Vector rotation functions change the vector <em>ab</em> to <em>ba</em>; how would you transform the vector <em>abc</em> to <em>cba</em>? (This models the problem of swapping nonadjacent blocks of memory).</p>
+
+<p>Use the fact that $$(abc)^r = (a^rb^rc^r)^r$$</p>
+
+<h1 id="problem-6">Problem 6</h1>
+
+<p>In the late 1970&rsquo;s, Bell Labs deployed a &ldquo;user-operated directory assistance&rdquo; program that allowed employeeds to look up a number in a company telephone directory using a standard push-button telephone.</p>
+
+<p><img src="https://selavy.github.io/img/push_button_telephone.png" alt="Push Button Telephone image" /></p>
+
+<p>This problem is solved just like the anagram problem.</p>
+
+<p>// NOTE: other time vs. space tradeoffs exist, could build full
+//       256 entry to avoid AND and sub
+const char ButtonMap[64] = {
+    &lsquo;0&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;4&rsquo;,
+    &lsquo;4&rsquo;, &lsquo;4&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;,
+    &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;9&rsquo;,
+    &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;,
+    &lsquo;0&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;4&rsquo;,
+    &lsquo;4&rsquo;, &lsquo;4&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;,
+    &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;9&rsquo;,
+    &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;,
+};</p>
+
+<p>[[nodiscard]] char Lookup(char c) noexcept
+{
+    return ButtonMap[(c &amp; 0x7F) - 64]; // to be safe, clear the top bit
+}</p>
+
+<p>[[nodiscard]]
+std::string telesign(std::string first, std::string last) noexcept
+{
+    std::string rv;
+    rv.reserve(last.size() + 3);
+    for (auto c: last) {
+        rv += Lookup3&copy;;
+    }
+    rv += &lsquo;<em>&rsquo;;
+    if (!first.empty()) {
+        rv += Lookup(first[0]);
+    }
+    rv += &lsquo;</em>&rsquo;;
+    return rv;
+}</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://selavy.github.io/posts/prog-pearls-ch1/"><i class="fa fa-chevron-circle-left"></i> Programming Pearls: Chapter 1</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://selavy.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://selavy.github.io/js/scripts.js"></script>
+</body>
+
+</html>

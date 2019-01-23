@@ -6,10 +6,20 @@
     <description>Recent content in Exercises on c&#39;est la vie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Jan 2019 20:47:53 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jan 2019 19:01:57 -0800</lastBuildDate>
     
 	<atom:link href="https://selavy.github.io/tags/exercises/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Programming Pearls: Chapter 2</title>
+      <link>https://selavy.github.io/posts/prog-pearls-ch2/</link>
+      <pubDate>Tue, 22 Jan 2019 19:01:57 -0800</pubDate>
+      
+      <guid>https://selavy.github.io/posts/prog-pearls-ch2/</guid>
+      <description>Problems for Column #2: &amp;ldquo;Aha! Algorithms&amp;rdquo;
+Lessons  Break problem down into primitives for which there are known algorithms. &amp;ldquo;A Problem Solver&amp;rsquo;s Perspective&amp;rdquo;: Good programmers are a little bit lazy: they sit back and wait for an insight rather than rushing forward with their first idea.  Problem #1 Consider the problem of finding all the anagrmas of a given input word. How would you solve this problem given only the word and the dictionary?</description>
+    </item>
     
     <item>
       <title>Programming Pearls: Chapter 1</title>
