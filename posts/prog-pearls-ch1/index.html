@@ -91,7 +91,7 @@
         </li>
         
 
-        <li>9 min read</li>
+        <li>12 min read</li>
     </ul>
 </aside>
     
@@ -600,6 +600,55 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 } __attribute__((packed));
 </code></pre></div>
 <p>but that doesn&rsquo;t appear to be the case as you can see in this <a href="https://gcc.godbolt.org/z/UVcr2y">Compiler Explorer</a> example. I did stumble on a <a href="https://github.com/gpakosz/PackedArray">library</a> that might help with this situation, but I didn&rsquo;t really explore it.</p>
+
+<h1 id="problem-7">Problem 7</h1>
+
+<p>[R. Weil] The program as sketeched has several flaws.  The first is that it assumes that no integer appears twice in the input. What happens if one does show up more than once? How could the program be modified to call an error function in that case? What happens when an input integer is less than zero or greater than or equal to n? What if an input is not numeric? What should a program do under those circumstances? What other sanity checks could the program incorporate? Describe small data sets taht test the program, including its proper handling of these and other ill-behaved cases.</p>
+
+<h1 id="problem-8">Problem 8</h1>
+
+<p>When the programmer faced the problem, all toll-free phone numbers in the United States had the 800 area code. Toll-free codes now include 800, 877 and 888, and the list is growing. How would you sort all of the toll-free numbers using only a megabyte? How can you store a set of toll-free numbers to allow very rapid lookup to determine whether a given toll-free number is available or already taken?</p>
+
+<h1 id="problem-9">Problem 9</h1>
+
+<p>One problem with trading more space to use less time is that intializing the space can itself take a great deal of time. Show how to circumvent this problem by designing a technique to initialize an entry of a vector to zero the first time it is accessed. Your scheme should use constant time for initialization and for each vector access, and use extra space proportional to the size of the vector. Because this method reduces initialization time by using even more space, it should be considered only when space is cheap, time is dear and the vector is sparse.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> Array {
+    <span style="color:#75715e">// 3 parallel arrays
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> data;
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> to;
+    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> from;
+    <span style="color:#75715e">// next available element
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> top{<span style="color:#ae81ff">0</span>};
+
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span>(size_t i, <span style="color:#66d9ef">int</span> value) <span style="color:#66d9ef">noexcept</span>
+    {
+        from[i] <span style="color:#f92672">=</span> top;
+        to[top] <span style="color:#f92672">=</span> i;
+        data[i] <span style="color:#f92672">=</span> value;
+        <span style="color:#f92672">++</span>top;
+    }
+
+    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_initialized</span>(size_t i) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span>
+    {
+        <span style="color:#66d9ef">return</span> from[i] <span style="color:#f92672">&lt;</span> top <span style="color:#f92672">&amp;&amp;</span> to[from[i]] <span style="color:#f92672">==</span> i;
+    }
+};
+</code></pre></div>
+<h1 id="problem-10">Problem 10</h1>
+
+<p>Before the days of low-cost overnight deliveries, a store allowed customers to order items over the telephone, which they picked up a few days later. The store&rsquo;s database used the customer&rsquo;s telephone number as the primary key for retrieval (customers know their phone numbers and the keys are close to unique). How would you organize the store&rsquo;s database to allow orders to be inserted and retrieved efficiently?</p>
+
+<p>Use last n-digits as a hash.</p>
+
+<h1 id="problem-11">Problem 11</h1>
+
+<p>In the early 1980&rsquo;s Lockheed engineers transmitted daily a dozen drawings from a Computer Aided Design (CAD) system in their Sunnyvale, California, plant to a test station in Santa Cruz. Although the facilities were just 25 miles apart, an automobile courier service took over an hour (due to traffic jams and mountain roads) and cost a hundred dollars per day. Propose alternative data transmission schemes and estimate their cost.</p>
+
+<h1 id="problem-12">Problem 12</h1>
+
+<p>Pioneers of human space flight soon realized the need for writing implements that work well in the extreme environment of space. A popular urban legend asserts that the United States National Aeronautics and Space Administration (NASA) solved the problem with a million dollars of research to develop a special pen. According to the legend, how did the Soviets solve the same problem?</p>
+
+<p>A pencil.</p>
 
 
 </article>
