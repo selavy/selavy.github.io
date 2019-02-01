@@ -1,0 +1,367 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>c&#39;est la vie</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Peter Lesslie" />
+  <meta name="generator" content="Hugo 0.47.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://selavy.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/selavy"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Programming Pearls Ch3</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-01-31T20:28:30-08:00">Jan 31, 2019</time>
+        </li>
+        
+        
+
+        
+
+        <li>5 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p><head>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head></p>
+
+<p>Problems from Column #3: Data Structures Programs</p>
+
+<h1 id="lessons">Lessons</h1>
+
+<ul>
+<li>Proper view of data structures programs
+** The data a system is to process gives deep insight into a good module structure
+** Understand the input, the output, and the intermediate data structures</li>
+<li>Separate data from control (e.g. Model+View+Controller)</li>
+<li>Don&rsquo;t write a big program when a little one will do
+** The more general problem may be easier to solve (Polya&rsquo;s &ldquo;Inventor&rsquo;s Paradox&rdquo;)</li>
+</ul>
+
+<h1 id="problem-1">Problem #1</h1>
+
+<p>As the second edition of this book goes to press, individual income in the United States is taxed at five different rates, the maximum of which is around forty percent. The situation was formerly more complicated, and more expensive. A programming text the following twenty-five <em>if</em> statements as a reasonable approach for calculating the 1978 United States Federal Income Tax. The rate sequence .14, .15, .16, .17, .18, &hellip; exhibits jumps larger than .01 later in the sequence. Any comments?</p>
+
+<pre><code>if income &lt;= 2200
+    tax = 0
+else if income &lt;= 2700
+    tax =         .14 * (income - 2200)
+else if income &lt;= 3200
+    tax =    70 + .15 * (income - 2700)
+else if income &lt;= 3700
+    tax =   145 + .16 * (income - 3200)
+else if income &lt;= 4200
+    tax =   225 + .17 * (income - 3700)
+    ...
+else
+    tax = 53090 + .70 * (income - 102200)
+</code></pre>
+
+<p>First thing to notice is that every calculation can be formulated as <code>tax = base[i] + rate[i] * (income - offset[i])</code>. So the easiest solution is to set up a table of</p>
+
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Base</th>
+<th>Rate</th>
+<th>Offset</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2200</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>2700</td>
+<td>0</td>
+<td>.14</td>
+<td>2200</td>
+</tr>
+
+<tr>
+<td>3200</td>
+<td>70</td>
+<td>.15</td>
+<td>2700</td>
+</tr>
+
+<tr>
+<td>3700</td>
+<td>145</td>
+<td>.16</td>
+<td>3200</td>
+</tr>
+
+<tr>
+<td>4200</td>
+<td>225</td>
+<td>.17</td>
+<td>3700</td>
+</tr>
+
+<tr>
+<td>INT_MAX</td>
+<td>53090</td>
+<td>.70</td>
+<td>102200</td>
+</tr>
+</tbody>
+</table>
+
+<p>Then we can just scan through the table:</p>
+
+<pre><code>for i in 0 .. len(table):
+    if income &lt;= limit[i]:
+        tax = base[i] + rate[i] * (income - offset[i])
+        break
+</code></pre>
+
+<p>It does look like the offset value is always the previous row&rsquo;s limit, so you could be more sophisticate about it.</p>
+
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Base</th>
+<th>Rate</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>2200</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>2700</td>
+<td>0</td>
+<td>.14</td>
+</tr>
+
+<tr>
+<td>3200</td>
+<td>70</td>
+<td>.15</td>
+</tr>
+
+<tr>
+<td>3700</td>
+<td>145</td>
+<td>.16</td>
+</tr>
+
+<tr>
+<td>4200</td>
+<td>225</td>
+<td>.17</td>
+</tr>
+
+<tr>
+<td>INT_MAX</td>
+<td>53090</td>
+<td>.70</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>for i in 1 .. len(table)
+    if income &lt;= limit[i]:
+        tax = base[i] + rate[i] * (income - limit[i-1)
+        break
+</code></pre>
+
+<h1 id="problem-2">Problem #2</h1>
+
+<p>A <em>k-th</em> order linear recurrence with constant coefficients defines a series as:</p>
+
+<p>$$ a_n = c_1*a_{n-1} + c_2*a_{n-2} + &hellip; + c_k*a_{n-k} + c_{k+1}$$,</p>
+
+<p>where \(c_1, &hellip;, c_{k+1}\) are real numbers. Write a program that with input \(k, a_1, &hellip;, a_k, c_1, &hellip;, c_{k+1} \), and <em>m</em> produces the output \(a_1\) through \(a_m\). How difficult is that program compared to a program that evaluates one particular fifth-order recurrence, but does so without using arrays?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">recurrence</span>(<span style="color:#66d9ef">int</span> K, <span style="color:#66d9ef">int</span> M, <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> a, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> c) <span style="color:#66d9ef">noexcept</span> {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> K; n <span style="color:#f92672">&lt;</span> M; <span style="color:#f92672">++</span>n) {
+        a[n] <span style="color:#f92672">=</span> c[K];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> K; <span style="color:#f92672">++</span>i) {
+            a[n] <span style="color:#f92672">+=</span> a[n<span style="color:#f92672">-</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>c[i];
+        }
+    }
+}
+</code></pre></div>
+<p>Another solution (not really convinced it is better&hellip;):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> Real <span style="color:#f92672">=</span> <span style="color:#66d9ef">double</span>;
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t K<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">using</span> Reals <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span>Real, K<span style="color:#f92672">&gt;</span>;
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span> K, <span style="color:#66d9ef">int</span> M<span style="color:#f92672">&gt;</span>
+Reals<span style="color:#f92672">&lt;</span>M<span style="color:#f92672">&gt;</span> recurrence(Reals<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">&gt;</span> as, Reals<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span> cs) <span style="color:#66d9ef">noexcept</span>
+{
+    Reals<span style="color:#f92672">&lt;</span>M<span style="color:#f92672">&gt;</span> output;
+    memcpy(<span style="color:#f92672">&amp;</span>output[<span style="color:#ae81ff">0</span>], <span style="color:#f92672">&amp;</span>as[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(as[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">*</span>K);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> K; n <span style="color:#f92672">&lt;</span> M; <span style="color:#f92672">++</span>n) {
+        <span style="color:#75715e">// Calculate the new value
+</span><span style="color:#75715e"></span>        Real r <span style="color:#f92672">=</span> cs[K];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> K; <span style="color:#f92672">++</span>i) {
+            r <span style="color:#f92672">+=</span> as[K<span style="color:#f92672">-</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>cs[i];
+        }
+        <span style="color:#75715e">// Propogate the values backward
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> K<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#f92672">++</span>i) {
+            as[i] <span style="color:#f92672">=</span> as[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+        }
+        as[K<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> r;
+        output[n] <span style="color:#f92672">=</span> r;
+    }
+    <span style="color:#66d9ef">return</span> output;
+}
+</code></pre></div>
+<h1 id="problem-3">Problem #3</h1>
+
+<p>Write a &ldquo;banner&rdquo; function that is given a capital letter as input and produces as output an array of character that graphically depicts that letter.</p>
+
+<p>Would just make an array, and index that for each input.</p>
+
+<h1 id="problem-4">Problem #4</h1>
+
+<p>Write functions for the following date problems: given two dates, compute the number of days between them; given a date, return its day of the week; given a month and year, produce a calendar for the month as an array of characters.</p>
+
+<p>To do this without the system utilities is actually a huge PITA. But you can use the <code>cal</code> command :)</p>
+
+<h1 id="problem-5">Problem #5</h1>
+
+<p>This problem deals with a small part of the problem of hyphenating English words. The following list of rules describes some legal hyphenations of words that end in the letter &ldquo;c&rdquo;
+:</p>
+
+<p>et-ic al-is-tic s-tic p-tic -lyt-ic ot-ic an-tic n-tic c-tic at-ic h-nic n-ic m-ic l-lib b-lic -clic l-ic h-ic f-ic d-ic -bic a-ic -mac i-ac</p>
+
+<p>The rules must be applied in the above order; thus the hyphenations &ldquo;eth-nic&rdquo; (which is caught by the rule &ldquo;h-nic&rdquo;) and &ldquo;clinic&rdquo; (which fails that test and falls through to &ldquo;n-ic&rdquo;). How would you represent such rules in a function that is given a word and must return suffix hyphenations?</p>
+
+<h1 id="problem-6">Problem #6</h1>
+
+<p>Build a &ldquo;form-letter generator&rdquo; that can prepare a customized document for each record in a database (this is often referred to as a &ldquo;mail-merge&rdquo; feature). Design small schemas and input files to test the correctness of your program.</p>
+
+<p>Use jinja.</p>
+
+<h1 id="problem-7">Problem #7</h1>
+
+<p>Typical dictionaries allow one to look up the definition of a word, and Problem 2.1 describes a dictionary that allows one to look up the anagrams of a word. Design dictionaries for looking up the proper spelling of a word and for looking up the rhymes of a word. Discuss dictionaries for looking up an integer sequence (such as 1, 1, 2, 3, 5, 8, 13, 21, &hellip;), a chemical sturcture, or the metrical structure of a song.</p>
+
+<h1 id="problem-8">Problem #8</h1>
+
+<p>[S. C. Johnson] Seven-segment devices provide an inexpensive display of the ten decimal digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+The seven segments are usually numbered as:</p>
+
+<p><img src="https://selavy.github.io/img/seven_segment_display.png" alt="Seven Segment Display figure" /></p>
+
+<p>Write a program that displays a 16-bit positive integer in five seven-segment digits. the ouput is an rray of five bytes; bit <em>i</em> of byte <em>j</em> is one if and only if the <em>i-th</em> segment of digit <em>j</em> should be on.</p>
+
+<p>I would again just have a pre-built array of 10 uint8_t where each bit set indicates if the line is on. Then I would do an algorithm like:</p>
+
+<pre><code>n = &lt;input&gt; base = 10000
+while base &gt; 0:
+    digit = n // base
+    print(digit_to_segments[digit])
+    n = n % base
+    base = base / 10
+</code></pre>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://selavy.github.io/posts/prog-pearls-ch2/"><i class="fa fa-chevron-circle-left"></i> Programming Pearls: Chapter 2</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://selavy.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://selavy.github.io/js/scripts.js"></script>
+</body>
+
+</html>
