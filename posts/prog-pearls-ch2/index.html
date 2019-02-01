@@ -91,7 +91,7 @@
         </li>
         
 
-        <li>5 min read</li>
+        <li>6 min read</li>
     </ul>
 </aside>
     
@@ -281,40 +281,73 @@ I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
 <p><img src="https://selavy.github.io/img/push_button_telephone.png" alt="Push Button Telephone image" /></p>
 
 <p>This problem is solved just like the anagram problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// NOTE: other time vs. space tradeoffs exist, could build full
+</span><span style="color:#75715e">//       256 entry to avoid AND and sub
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> ButtonMap[<span style="color:#ae81ff">64</span>] <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>,
+    <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>,
+    <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>,
+    <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>,
+    <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>,
+    <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>,
+    <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>,
+    <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>,
+};
 
-<p>// NOTE: other time vs. space tradeoffs exist, could build full
-//       256 entry to avoid AND and sub
-const char ButtonMap[64] = {
-    &lsquo;0&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;4&rsquo;,
-    &lsquo;4&rsquo;, &lsquo;4&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;,
-    &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;9&rsquo;,
-    &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;,
-    &lsquo;0&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;4&rsquo;,
-    &lsquo;4&rsquo;, &lsquo;4&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;5&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;,
-    &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;7&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;8&rsquo;, &lsquo;9&rsquo;,
-    &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;9&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;, &lsquo;0&rsquo;,
-};</p>
-
-<p>[[nodiscard]] char Lookup(char c) noexcept
+[[nodiscard]] <span style="color:#66d9ef">char</span> Lookup(<span style="color:#66d9ef">char</span> c) <span style="color:#66d9ef">noexcept</span>
 {
-    return ButtonMap[(c &amp; 0x7F) - 64]; // to be safe, clear the top bit
-}</p>
+    <span style="color:#66d9ef">return</span> ButtonMap[(c <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x7F</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">64</span>]; <span style="color:#75715e">// to be safe, clear the top bit
+</span><span style="color:#75715e"></span>}
 
-<p>[[nodiscard]]
-std::string telesign(std::string first, std::string last) noexcept
+[[nodiscard]]
+std<span style="color:#f92672">::</span>string telesign(std<span style="color:#f92672">::</span>string first, std<span style="color:#f92672">::</span>string last) <span style="color:#66d9ef">noexcept</span>
 {
-    std::string rv;
-    rv.reserve(last.size() + 3);
-    for (auto c: last) {
-        rv += Lookup3&copy;;
+    std<span style="color:#f92672">::</span>string rv;
+    rv.reserve(last.size() <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> c: last) {
+        rv <span style="color:#f92672">+=</span> Lookup3(c);
     }
-    rv += &lsquo;<em>&rsquo;;
-    if (!first.empty()) {
-        rv += Lookup(first[0]);
+    rv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;*&#39;</span>;
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>first.empty()) {
+        rv <span style="color:#f92672">+=</span> Lookup(first[<span style="color:#ae81ff">0</span>]);
     }
-    rv += &lsquo;</em>&rsquo;;
-    return rv;
-}</p>
+    rv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;*&#39;</span>;
+    <span style="color:#66d9ef">return</span> rv;
+}
+</code></pre></div>
+<h1 id="problem-7">Problem 7</h1>
+
+<p>In the early 1960&rsquo;s, Vic Vyssotsky worked with a programmer who had to transpose a 4000-by-4000 matrix stored on magnetic tape (each record had the same format in several dozen bytes). The original program his colleague suggested would have taken fifty hours to run; how did Vyssotsky reduce the run time to half an hour?</p>
+
+<p>Answer given in book: If matrix is row-major, then prepend the column and row to each element, sort, remove the column and row.</p>
+
+<h1 id="problem-8">Problem 8</h1>
+
+<p>[J. Ullman] Given a set of <em>n</em> real numbers, a real number <em>t</em>, and an integer <em>k</em>, how quickly can you determine whether there exists a k-element subset of the set that sums to at most <em>t</em>?</p>
+
+<p>Sum the smallest <em>k</em> elements in the set and compare to <em>t</em>.  Should be able to use quick select, but could just use sort then choose <em>k</em> elements.</p>
+
+<h1 id="problem-9">Problem 9</h1>
+
+<p>Sequential search and binary search represent a tradeoff between search time and preprocessing time. How many binary searches need be performed in an <em>n</em>-element table to buy back the preprocessing time required to sort the table?</p>
+
+<p>Sorting is O(nlog(n)), Linear search is O(n), Binary Search is O(log(n)).</p>
+
+<p>$$s = Searches Needed$$</p>
+
+<p>$$s*lg(n) + n*lg(n) &lt; s*n$$</p>
+
+<p>$$n*lg(n) &lt; s*n - s*lg(n)$$</p>
+
+<p>$$s &gt; n*lg(n)/(n-lg(n))$$</p>
+
+<p>Need O(n*lg(n) / (n - lg(n))) searches to make it worth it (ignoring constant factors, which is probably not correct).</p>
+
+<h1 id="problem-10">Problem 10</h1>
+
+<p>On the day a new research reported to work for Thomas Edison, Edison asked him to compute the volume of an empty light bulb shell. After several hours with calipers and calculus, the fresh hire returned with the answer of 150 cubic centimeters. In a few seconds, Edison computed and responded &ldquo;closer to 155&rdquo; &ndash; how did he do it?</p>
+
+<p>Fill the light bulb with water.</p>
 
 
 </article>
