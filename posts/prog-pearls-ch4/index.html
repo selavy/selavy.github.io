@@ -69,7 +69,7 @@
 
         
 
-        <li>4 min read</li>
+        <li>7 min read</li>
     </ul>
 </aside>
     
@@ -101,7 +101,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// NOTE: this is the interface that he describes in the
 </span><span style="color:#75715e">// book, but a half open interval is definitely the
 </span><span style="color:#75715e">// better way to code bsearch (see c++ standard lib)
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bsearch2</span>(<span style="color:#66d9ef">int</span> t, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x, <span style="color:#66d9ef">int</span> n)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bsearch</span>(<span style="color:#66d9ef">int</span> t, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x, <span style="color:#66d9ef">int</span> n)
 {
     <span style="color:#75715e">/*
 </span><span style="color:#75715e">     * precondition: x[0] &lt;= x[1] &lt;= ... &lt;= x[n-1]
@@ -113,9 +113,7 @@
     <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
     <span style="color:#66d9ef">int</span> m;
     <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> u) {
-        <span style="color:#75715e">// m = (l + u) / 2; // l + ((u - l) / 2)
-</span><span style="color:#75715e"></span>	    <span style="color:#75715e">// to be correct for overflow:
-</span><span style="color:#75715e"></span>		m <span style="color:#f92672">=</span> l <span style="color:#f92672">+</span> ((u <span style="color:#f92672">-</span> l) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+		m <span style="color:#f92672">=</span> l <span style="color:#f92672">+</span> ((u <span style="color:#f92672">-</span> l) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
         <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">&lt;</span> t) {
             l <span style="color:#f92672">=</span> m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
         } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">==</span> t) {
@@ -127,7 +125,7 @@
     <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 }
 </code></pre></div>
-<p>The recursive version (I didn&rsquo;t realize that lambdas can&rsquo;t be used recursively):</p>
+<p>The recursive version. Interesting note: I didn&rsquo;t realize that lambdas can&rsquo;t be used recursively:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">go</span>(<span style="color:#66d9ef">int</span> t, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x, <span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> u)
 {
     <span style="color:#66d9ef">if</span> (l <span style="color:#f92672">&gt;</span> u)        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
@@ -158,7 +156,11 @@
 
 <p>David Gries calls this the &ldquo;Coffee Can Problem&rdquo; in his <em>Science of Programming</em>. You are initially given a coffee can that contains some black beans and some white beans and a large pile of &ldquo;extra&rdquo; black beans. You then repeat the following process until there is a single bean left in the can.</p>
 
-<pre><code>Randomly select two beans from the can. If they are the same color, throw them both out and insert an extra black bean. If they are different colors, return the white bean to the can and throw out the black.
+<pre><code>Randomly select two beans from the can.
+If they are the same color:
+    throw them both out and insert an extra black bean.
+If they are different colors:
+    return the white bean to the can and throw out the black.
 </code></pre>
 
 <p>Prove that the process terminates. What can you say about the color of the final remaining bean as a function of the number of black and white beans originally in the can?</p>
@@ -168,6 +170,134 @@
 <h1 id="problem-7">Problem #7</h1>
 
 <p>A colleague faced the following problem in a program to draw lines on a bit-mapped display. An array of <em>n</em> pairs of reals (a_i, b_i) defined the <em>n</em> lines y_i = a_i*x + b_i. The lines were ordered in the x-iunterval [0, 1] in the sense that y<em>i &lt; y</em>{i+1} for all values of <em>i</em> between 0 and n-2 and all values of <em>x</em> in [0,1]. Les formally, the lines don&rsquo;t touch in the vertical slab. Given a point (x,y), where 0&lt;=x&lt;=1, he wanted to determine the two lines that bracket the point. How could he solve the problem quickly?</p>
+
+<h1 id="problem-8">Problem #8</h1>
+
+<p>Binary search is fundamentally faster than sequential search: to search an <em>n</em>-element table, it makes roughtly log_{2}(n) comparisons while sequential search makes roughly n/2. While it is often fast enough, in a few cases binary search must be made faster yet. Although you can&rsquo;t reduce the logarithmic number of comparisons made by the algorithm, can you rewrite the binary search code to be faster? For definiteness, assume that you are to search a sorted table of n=1000 integers.</p>
+
+<h1 id="problem-9">Problem #9</h1>
+
+<p>As exercises in program verification, precisely specify the input/output behavior of each of the following program fragments and show that the code meets its specification. The first program implements the vector addition a = b + c.</p>
+
+<pre><code>i = 0
+while i &lt; n
+    a[i] = b[i] + c[i]
+    i = i + 1
+</code></pre>
+
+<p>input: array b with length n
+       array c with length n
+       output array a with length n
+output: array a s.t. a[i] = b[i] + c[i]</p>
+
+<h3 id="inline-answer">Inline Answer</h3>
+
+<pre><code>i = 0
+while i &lt; n
+    assert i in range(0, n-1)
+    a[i] = b[i] + c[i]
+    assert a[i] = b[i] + c[i] (as desired)
+assert i = n, therefore all indices were visited
+</code></pre>
+
+<p>This function is so straightforward, I&rsquo;m not really sure what kind of proof is necessary&hellip; The only thing really to prove is that i visits all values in the range [0, n-1], which proven by inspection.</p>
+
+<p>(This code and the next two fragments expand the for i=[0, n) loop to a while loop with an increment at the end.) The next fragment computes the maximum value in the array <em>x</em>.</p>
+
+<pre><code>max = x[0]
+i = 1
+while i &lt; n do
+    if x[i] &gt; max
+        max = x[i]
+    i = i + 1
+</code></pre>
+
+<h3 id="inline-answer-1">Inline Answer</h3>
+
+<pre><code>max = x[0]
+i = 1
+while i &lt; n do
+    assert i in range(1, n-1)
+    assert x is max element in range(0, i-1)
+    if x[i] &gt; max
+        max = x[i]
+    i = i + 1
+assert i = n, therefore all indicies 0 .. n-1 were visited
+</code></pre>
+
+<p>I think the key here is the pre-condition that x is max element in the range(0, i-1) at every step, then via proof by induction by we can see that x will be the max value when the loop exits.</p>
+
+<p>This sequential search program returns the position of the first occurrence of <em>t</em> in the array x[0..n-1].</p>
+
+<pre><code>i = 0
+while i &lt; n &amp;&amp; x[i] != t
+    i = i+1
+if i &gt;= n
+    p = -1
+else
+    p = i
+</code></pre>
+
+<h3 id="inline-answer-2">Inline Answer</h3>
+
+<pre><code>i = 0
+while i &lt; n &amp;&amp; x[i] != t
+    assert t not in range(0, i)
+assert t == x[i] or t not in x
+if i &gt;= n
+    assert t not in x
+    return -1
+else
+    p = i
+</code></pre>
+
+<p>The loop invariant is &ldquo;t not in range(0, i)&rdquo;, and we visit all values of i in the range [0, n).</p>
+
+<p>This program computes the n-th power of x in time proportional to the logarithm of <em>n</em>. This recursive program is straightforward to code and to verify; the iterative version is subtle, and is left as an additional problem.</p>
+
+<pre><code>function exp(x, n)
+        pre n &gt;= 0
+        post result = x^n
+    if n = 0
+        return 1
+    else if even(n)
+        return square(exp(x, n/2))
+    else
+        return x*exp(x, n-1)
+</code></pre>
+
+<h3 id="inline-answer-3">Inline Answer</h3>
+
+<pre><code>function exp(x, n)
+        pre n &gt;= 0
+        post result = x^n
+    if n = 0
+        return 1
+    else if even(n)
+        assert n % 2 == 0
+        assert x^n == x^(n/2)^2
+        return square(exp(x, n/2))
+    else
+        assert x^n == x*(x^(n-1))
+        return x*exp(x, n-1)
+</code></pre>
+
+<p>The loop invariant is result = x^n, which we will decompose until n = 0, at which point we know x^0 = 1. The only thing to really prove is that n will reach 0: since on each iteration either n -&gt; floor(n/2) or n -&gt; n - 1, n will eventually reach 0.</p>
+
+<h1 id="problem-10">Problem #10</h1>
+
+<p>Introduce errors into the binary search function and see whether (and how) they are caught by attempting to verify the buggy code.</p>
+
+<h1 id="problem-11">Problem #11</h1>
+
+<p>Write and prove the correctness of a recursive binary search in C or C++ with this declaration:</p>
+
+<pre><code>int binarysearch(DataType x[], int n)
+</code></pre>
+
+<p>Use this function alone; do not call any other recursive functions.</p>
+
+<p>It is not at all clear to me what this question is asking. The way the function signature is written, it doesn&rsquo;t even take the element that we are searching for. For the recursive binary search, see solution to problem #3.</p>
 
 
 </article>
