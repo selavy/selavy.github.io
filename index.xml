@@ -28,7 +28,7 @@ It makes use of a variety of open source projects including:
       <pubDate>Thu, 14 Feb 2019 18:51:49 -0800</pubDate>
       
       <guid>https://selavy.github.io/posts/prog-pearls-ch4/</guid>
-      <description>Problems from Column #4: Data Structures Programs
+      <description>Problems from Column #4: Writing Correct Programs
 Lessons  Consider using formal verification methods on tricky functions Loop invariants are a helpful tool  Problem #1 As laborious as our proof of binary search was, it is still unfinished by some standards. How would you prove that the program is free of run-time errors (such as division by zero, word overflow, variables out of declared range, or array indices out of bounds)?</description>
     </item>
     
