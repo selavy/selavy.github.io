@@ -6,10 +6,21 @@
     <description>Recent content in Posts on c&#39;est la vie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Feb 2019 18:51:49 -0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Feb 2019 08:30:07 -0800</lastBuildDate>
     
 	<atom:link href="https://selavy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Programming Pearls: Chapter 9</title>
+      <link>https://selavy.github.io/posts/prog-pearls-ch9/</link>
+      <pubDate>Mon, 18 Feb 2019 08:30:07 -0800</pubDate>
+      
+      <guid>https://selavy.github.io/posts/prog-pearls-ch9/</guid>
+      <description>Problems from Column #9: Code Tuning
+Note: I did skip several problems from several columns because I didn&amp;rsquo;t find them particularly useful. Several of the questions here on out are also pretty dated so I&amp;rsquo;m just going to jump around to the ones that I like.
+Lessons  Speed comes from knowing your data and specializing. ** This comes with what can be a huge cost in terms of maintainability.</description>
+    </item>
     
     <item>
       <title>Programming Pearls: Chapter 4</title>
