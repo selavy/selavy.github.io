@@ -169,8 +169,19 @@ If they are different colors:
 
 <h1 id="problem-7">Problem #7</h1>
 
-<p>A colleague faced the following problem in a program to draw lines on a bit-mapped display. An array of <em>n</em> pairs of reals (a_i, b_i) defined the <em>n</em> lines y_i = a_i*x + b_i. The lines were ordered in the x-iunterval [0, 1] in the sense that y<em>i &lt; y</em>{i+1} for all values of <em>i</em> between 0 and n-2 and all values of <em>x</em> in [0,1]. Les formally, the lines don&rsquo;t touch in the vertical slab. Given a point (x,y), where 0&lt;=x&lt;=1, he wanted to determine the two lines that bracket the point. How could he solve the problem quickly?</p>
+<p>A colleague faced the following problem in a program to draw lines on a bit-mapped display. An array of <em>n</em> pairs of reals (a_i, b_i) defined the <em>n</em> lines y_i = a_i*x + b_i. The lines were ordered in the x-iunterval [0, 1] in the sense that y<em>i &lt; y</em>{i+1} for all values of <em>i</em> between 0 and n-2 and all values of <em>x</em> in [0,1]. Less formally, the lines don&rsquo;t touch in the vertical slab. Given a point (x,y), where 0&lt;=x&lt;=1, he wanted to determine the two lines that bracket the point. How could he solve the problem quickly?</p>
 
+<p>It&rsquo;s not clear what to do if the given point is above the top line or below the bottom line, but this is covers the common case:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Iter</span><span style="color:#f92672">&gt;</span>
+std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span>Iter, Iter<span style="color:#f92672">&gt;</span> find_line(Iter first, Iter last, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> x, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> y)
+{
+    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> compare <span style="color:#f92672">=</span> [x](<span style="color:#66d9ef">double</span> y, std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>, <span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> p) <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">bool</span> {
+        <span style="color:#66d9ef">return</span> y <span style="color:#f92672">&lt;</span> (x<span style="color:#f92672">*</span>p.first <span style="color:#f92672">+</span> p.second);
+    };
+    <span style="color:#66d9ef">auto</span> hi <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>upper_bound(first, last, y, compare);
+    <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>make_pair(hi <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, hi);
+}
+</code></pre></div>
 <h1 id="problem-8">Problem #8</h1>
 
 <p>Binary search is fundamentally faster than sequential search: to search an <em>n</em>-element table, it makes roughtly log_{2}(n) comparisons while sequential search makes roughly n/2. While it is often fast enough, in a few cases binary search must be made faster yet. Although you can&rsquo;t reduce the logarithmic number of comparisons made by the algorithm, can you rewrite the binary search code to be faster? For definiteness, assume that you are to search a sorted table of n=1000 integers.</p>
