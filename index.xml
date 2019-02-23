@@ -23,6 +23,16 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Programming Pearls: Chapter 10</title>
+      <link>https://selavy.github.io/posts/prog-pearls-ch10/</link>
+      <pubDate>Fri, 22 Feb 2019 18:30:05 -0800</pubDate>
+      
+      <guid>https://selavy.github.io/posts/prog-pearls-ch10/</guid>
+      <description>Problems from Column #9: Squeezing Space
+Problem #1 In the late 1970&amp;rsquo;s Stu Feldman build a Fortran 77 compiler that barely fit in a 64-kilobyte code space. To save space he had packed some integers in critical records into four-bit fields. When he removed the packing and stored the fields in eight bits, he found that although the data space increased by a few hundred bytes, the overall size of the program went down by several thousand bytes.</description>
+    </item>
+    
+    <item>
       <title>Programming Pearls: Chapter 9</title>
       <link>https://selavy.github.io/posts/prog-pearls-ch9/</link>
       <pubDate>Mon, 18 Feb 2019 08:30:07 -0800</pubDate>
