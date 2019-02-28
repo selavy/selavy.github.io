@@ -6,10 +6,21 @@
     <description>Recent content in Posts on c&#39;est la vie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Feb 2019 18:30:05 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Feb 2019 19:32:27 -0800</lastBuildDate>
     
 	<atom:link href="https://selavy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Programming Pearls: Chapter 11</title>
+      <link>https://selavy.github.io/posts/prog-pearls-ch11/</link>
+      <pubDate>Tue, 26 Feb 2019 19:32:27 -0800</pubDate>
+      
+      <guid>https://selavy.github.io/posts/prog-pearls-ch11/</guid>
+      <description>Problems from Column #11: Sorting
+First implementation of quicksort:
+template &amp;lt;class I, class C&amp;gt; bool is_partitioned(I begin, I end, I mid, C cmp) { while (begin &amp;lt; end) { if (!cmp(*begin++, *mid)) return false; } return true; } template &amp;lt;class I&amp;gt; I partition(I begin, I end) { // partition [begin, end) around *begin  auto lo = begin + 1; auto hi = end - 1; while (lo &amp;lt; hi) { // invariant: [begin + 1, lo ) &amp;lt;= *begin  // invariant: (hi , end) &amp;gt;= *begin  assert(is_partitioned(begin + 1, lo , begin, std::less_equal&amp;lt;&amp;gt;{})); assert(is_partitioned(hi + 1, end, begin, std::greater_equal&amp;lt;&amp;gt;{})); if (!</description>
+    </item>
     
     <item>
       <title>Programming Pearls: Chapter 10</title>
@@ -17,7 +28,7 @@
       <pubDate>Fri, 22 Feb 2019 18:30:05 -0800</pubDate>
       
       <guid>https://selavy.github.io/posts/prog-pearls-ch10/</guid>
-      <description>Problems from Column #9: Squeezing Space
+      <description>Problems from Column #10: Squeezing Space
 Problem #1 In the late 1970&amp;rsquo;s Stu Feldman build a Fortran 77 compiler that barely fit in a 64-kilobyte code space. To save space he had packed some integers in critical records into four-bit fields. When he removed the packing and stored the fields in eight bits, he found that although the data space increased by a few hundred bytes, the overall size of the program went down by several thousand bytes.</description>
     </item>
     

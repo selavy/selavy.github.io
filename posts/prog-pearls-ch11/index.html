@@ -1,0 +1,260 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>c&#39;est la vie</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Peter Lesslie" />
+  <meta name="generator" content="Hugo 0.40.1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://selavy.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
+            </h1>
+
+      <ul id="social-media">
+          
+        <li><a href="https://github.com/selavy"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://selavy.github.io/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Programming Pearls: Chapter 11</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-02-26T19:32:27-08:00">Feb 26, 2019</time>
+        </li>
+        
+        
+
+        
+
+        <li>4 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>Problems from Column #11: Sorting</p>
+
+<p>First implementation of quicksort:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">I</span>, <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">bool</span> is_partitioned(I begin, I end, I mid, C cmp) {
+    <span style="color:#66d9ef">while</span> (begin <span style="color:#f92672">&lt;</span> end) {
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>cmp(<span style="color:#f92672">*</span>begin<span style="color:#f92672">++</span>, <span style="color:#f92672">*</span>mid)) <span style="color:#66d9ef">return</span> false;
+    }
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">I</span><span style="color:#f92672">&gt;</span>
+I partition(I begin, I end) {
+    <span style="color:#75715e">// partition [begin, end) around *begin
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> lo <span style="color:#f92672">=</span> begin <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">auto</span> hi <span style="color:#f92672">=</span> end <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> (lo <span style="color:#f92672">&lt;</span> hi) {
+        <span style="color:#75715e">// invariant: [begin + 1, lo ) &lt;= *begin
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// invariant: (hi       , end) &gt;= *begin
+</span><span style="color:#75715e"></span>        assert(is_partitioned(begin <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, lo , begin, std<span style="color:#f92672">::</span>less_equal<span style="color:#f92672">&lt;&gt;</span>{}));
+        assert(is_partitioned(hi    <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, end, begin, std<span style="color:#f92672">::</span>greater_equal<span style="color:#f92672">&lt;&gt;</span>{}));
+
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(<span style="color:#f92672">*</span>lo <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>begin)) {
+            <span style="color:#f92672">++</span>lo;
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(<span style="color:#f92672">*</span>hi <span style="color:#f92672">&lt;</span> <span style="color:#f92672">*</span>begin)) {
+            <span style="color:#f92672">--</span>hi;
+        } <span style="color:#66d9ef">else</span> {
+            std<span style="color:#f92672">::</span>iter_swap(lo<span style="color:#f92672">++</span>, hi<span style="color:#f92672">--</span>);
+        }
+
+        assert(is_partitioned(begin <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, lo , begin, std<span style="color:#f92672">::</span>less_equal<span style="color:#f92672">&lt;&gt;</span>{}));
+        assert(is_partitioned(hi    <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, end, begin, std<span style="color:#f92672">::</span>greater_equal<span style="color:#f92672">&lt;&gt;</span>{}));
+    }
+
+    <span style="color:#66d9ef">auto</span> mid <span style="color:#f92672">=</span> lo <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">*</span>begin <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>lo) {
+        mid <span style="color:#f92672">=</span> lo;
+    }
+    std<span style="color:#f92672">::</span>iter_swap(begin, mid);
+
+    <span style="color:#75715e">// assert is partitioned
+</span><span style="color:#75715e"></span>    assert(is_partitioned(begin  , mid, mid, std<span style="color:#f92672">::</span>less_equal<span style="color:#f92672">&lt;&gt;</span>{}));
+    assert(is_partitioned(mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, end, mid, std<span style="color:#f92672">::</span>greater_equal<span style="color:#f92672">&lt;&gt;</span>{}));
+
+    <span style="color:#66d9ef">return</span> mid;
+}
+
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">I</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">void</span> qsort(I begin, I end) {
+    <span style="color:#66d9ef">auto</span> count <span style="color:#f92672">=</span> end <span style="color:#f92672">-</span> begin;
+    <span style="color:#66d9ef">if</span> (count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">auto</span> mid <span style="color:#f92672">=</span> partition(begin, end);
+    qsort(begin, mid);
+    qsort(mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, end);
+}
+</code></pre></div>
+<p>Note to self: don&rsquo;t get lazy. Was easy to establish the loop invariants for partiion(), but I then took too much time correctly setting mid. Just slow down to work it out.</p>
+
+<p>Pretty cool that it&rsquo;s easy with C++14 generic lambdas to use std::is_partitioned(). My tests cases looked like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">TEST_CASE(<span style="color:#e6db74">&#34;Partition Tests&#34;</span>, <span style="color:#e6db74">&#34;[partition]&#34;</span>) {
+    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> tests <span style="color:#f92672">=</span> {
+        { <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> },
+        { <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> },
+        { <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">3</span> },
+        { <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span> },
+        { <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> },
+    };
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> vs : tests) {
+        <span style="color:#66d9ef">auto</span> mid <span style="color:#f92672">=</span> ch11<span style="color:#f92672">::</span>partition2(vs.begin(), vs.end());
+        REQUIRE(std<span style="color:#f92672">::</span>is_partitioned(vs.begin(), vs.end(), [mid](<span style="color:#66d9ef">auto</span> x) { <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&lt;</span> <span style="color:#f92672">*</span>mid; }) <span style="color:#f92672">==</span> true);
+    }
+}
+</code></pre></div>
+<p>Note that in C++ you can still do it with decltype, it&rsquo;s just ugly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">REQUIRE(std<span style="color:#f92672">::</span>is_partitioned(vs.begin(), vs.end(), [mid](<span style="color:#66d9ef">decltype</span>(<span style="color:#f92672">*</span>vs.begin()) x) { <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&lt;</span> <span style="color:#f92672">*</span>mid; }) <span style="color:#f92672">==</span> true);
+</code></pre></div>
+<p>But probably the better option is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Iter</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">bool</span> IsPartitioned(Iter begin, Iter end) {
+    <span style="color:#66d9ef">using</span> ValueType <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>Iter<span style="color:#f92672">&gt;::</span>value_type;
+    <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>is_partitioned(begin <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, end, [begin](ValueType x) { <span style="color:#66d9ef">return</span> x <span style="color:#f92672">&lt;</span> <span style="color:#f92672">*</span>begin; });
+}
+</code></pre></div>
+<p>Another version of partition:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">I</span><span style="color:#f92672">&gt;</span>
+I partition(I begin, I end) {
+    <span style="color:#66d9ef">auto</span> lo <span style="color:#f92672">=</span> begin;
+    <span style="color:#66d9ef">auto</span> hi <span style="color:#f92672">=</span> end;
+    <span style="color:#66d9ef">for</span> (;;) {
+        <span style="color:#66d9ef">do</span> { <span style="color:#f92672">++</span>lo; } <span style="color:#66d9ef">while</span> (lo <span style="color:#f92672">&lt;</span> end <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">*</span>lo <span style="color:#f92672">&lt;</span> <span style="color:#f92672">*</span>begin);
+        <span style="color:#66d9ef">do</span> { <span style="color:#f92672">--</span>hi; } <span style="color:#66d9ef">while</span> (            <span style="color:#f92672">*</span>hi <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>begin);
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(lo <span style="color:#f92672">&lt;</span> hi)) {
+            <span style="color:#66d9ef">break</span>;
+        }
+        std<span style="color:#f92672">::</span>iter_swap(lo, hi);
+    }
+    std<span style="color:#f92672">::</span>iter_swap(begin, hi);
+    <span style="color:#66d9ef">return</span> hi;
+}
+</code></pre></div>
+<h1 id="problem-1">Problem #1</h1>
+
+<p>Like any other powerful tool, sorting is often used when it shouldn&rsquo;t be and not used when it should be. Explain how sorting could be overused or underused when calculating the following statistics of an array of <em>n</em> floating point numbers: minimum, maximum, mean, median, and mode.</p>
+
+<p>minimum, maximum, mode, and mean can all be calculated online so no sorting needed. Median can be calculated with the quickselect algorithm, but sorting isn&rsquo;t a completely unreasonable implementation.</p>
+
+<p>Very, very simple implementation of mode:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">calc_mode</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> vs) {
+    std<span style="color:#f92672">::</span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> m;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> v : vs) {
+        m[v]<span style="color:#f92672">++</span>;
+    }
+    <span style="color:#66d9ef">auto</span> it <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>max_element(m.begin(), m.end(), [](<span style="color:#66d9ef">auto</span> x, <span style="color:#66d9ef">auto</span> y) { <span style="color:#66d9ef">return</span> x.second <span style="color:#f92672">&lt;</span> y.second; });
+    <span style="color:#66d9ef">return</span> it<span style="color:#f92672">-&gt;</span>first;
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">calc_mean</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> vs) {
+    <span style="color:#66d9ef">double</span> sum <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>accumulate(vs.begin(), vs.end(), <span style="color:#ae81ff">0.</span>);
+    <span style="color:#66d9ef">return</span> sum <span style="color:#f92672">/</span> vs.size();
+    }
+</code></pre></div>
+<h1 id="problem-2">Problem #2</h1>
+
+<p>Speed up Lomuto&rsquo;s partition scheme by using x[l] as a sentinel. Show how this scheme allows you to remove the <em>swap</em> after the loop</p>
+
+<h1 id="problem-3">Problem #3</h1>
+
+<p>How could you experiment to find the best value of <em>cutoff</em> on a particular system?</p>
+
+<h1 id="problem-4">Problem #4</h1>
+
+<p>Although Quicksort uses only <em>O(log n)</em> stack space on the average, it can use linear space in the worst case. Explain why, then modify the program to use only logarithmic space in the worst case.</p>
+
+<h1 id="problem-5">Problem #5</h1>
+
+<p>Show how to use Lomuto&rsquo;s partitioning scheme to sort varying-length bit strings in time proportion to the sum of their lengths.</p>
+
+<h1 id="problem-6">Problem #6</h1>
+
+<p>Use the techniques of this column to implement other sorting algorithms. Selection sort first places the small value in x[0], then the smallest raemaining value in x[1], and so forth. Shell sort (or &ldquo;diminishing increment sort&rdquo;) is like Insertion sort, but moves elements down <em>h</em> positions rather than just one position. The value of <em>h</em> starts large, and shrinks.</p>
+
+<p>Note to self: implement merge sort and timsort</p>
+
+<h1 id="problem-9">Problem #9</h1>
+
+<p>Write a program for finding the kth-smallest element in the array <em>x</em> in O(n) expected time. Your algorithm may permute the elements of <em>x</em>.</p>
+
+<p>This is the quickselect algorithm.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://selavy.github.io/posts/prog-pearls-ch10/"><i class="fa fa-chevron-circle-left"></i> Programming Pearls: Chapter 10</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://selavy.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://selavy.github.io/js/scripts.js"></script>
+</body>
+
+</html>
