@@ -73,8 +73,8 @@
     </ul>
 </aside>
             <p>Problems from Column #11: Sorting
-First implementation of quicksort:
-template &lt;class I, class C&gt; bool is_partitioned(I begin, I end, I mid, C cmp) { while (begin &lt; end) { if (!cmp(*begin++, *mid)) return false; } return true; } template &lt;class I&gt; I partition(I begin, I end) { // partition [begin, end) around *begin  auto lo = begin + 1; auto hi = end - 1; while (lo &lt; hi) { // invariant: [begin + 1, lo ) &lt;= *begin  // invariant: (hi , end) &gt;= *begin  assert(is_partitioned(begin + 1, lo , begin, std::less_equal&lt;&gt;{})); assert(is_partitioned(hi + 1, end, begin, std::greater_equal&lt;&gt;{})); if (!</p>
+Lessons from Programming Pearls:  Work on the right problem. Explore the design space of solutions. Look at the data. Use the back of the envelope. Exploit symmetry Design with components. Build prototypes. Make tradeoffs when you have to. Keep it simple. Strive for elegance.  First implementation of quicksort:
+template &lt;class I, class C&gt; bool is_partitioned(I begin, I end, I mid, C cmp) { while (begin &lt; end) { if (!</p>
             
             <a href="https://selavy.github.io/posts/prog-pearls-ch11/">Read more&hellip;</a>
             
