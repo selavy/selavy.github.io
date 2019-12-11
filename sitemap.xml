@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -10,6 +10,11 @@
   <url>
     <loc>https://selavy.github.io/about/</loc>
     <lastmod>2019-01-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/</loc>
+    <lastmod>2019-02-26T19:32:27-08:00</lastmod>
   </url>
   
   <url>
@@ -38,48 +43,38 @@
   </url>
   
   <url>
+    <loc>https://selavy.github.io/categories/</loc>
+    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/tags/exercises/</loc>
+    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/categories/exercises/</loc>
+    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/tags/pearls/</loc>
+    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://selavy.github.io/posts/prog-pearls-ch2/</loc>
+    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://selavy.github.io/tags/</loc>
     <lastmod>2019-01-22T19:01:57-08:00</lastmod>
   </url>
   
   <url>
     <loc>https://selavy.github.io/posts/prog-pearls-ch1/</loc>
     <lastmod>2019-01-19T20:47:53-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://selavy.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://selavy.github.io/tags/exercises/</loc>
-    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://selavy.github.io/categories/exercises/</loc>
-    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://selavy.github.io/tags/pearls/</loc>
-    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://selavy.github.io/tags/</loc>
-    <lastmod>2019-01-22T19:01:57-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://selavy.github.io/</loc>
-    <lastmod>2019-01-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

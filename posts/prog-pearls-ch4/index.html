@@ -7,25 +7,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="Peter Lesslie" />
-  <meta name="generator" content="Hugo 0.40.1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.61.0" />
+    
+
+  <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://selavy.github.io/posts/" />
+<meta property="og:updated_time" content="2019-02-26T19:32:27-08:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
-  <link rel="stylesheet" type="text/css" href="https://selavy.github.io/css/styles.css" />
-</head>
+  <link rel="stylesheet" type="text/css" href="https://selavy.github.io/css/styles.css" /></head>
 
 <body>
   <div id="container">
     <header>
       <h1>
-                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
+                <a href="https://selavy.github.io/">c'est la vie</a>
             </h1>
 
       <ul id="social-media">
-          
-        <li><a href="https://github.com/selavy"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
-           
+             <li>
+               <a href="https://github.com/selavy" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
       </ul>
       
     </header>
@@ -65,42 +78,31 @@
             <time class="post-date" datetime="2019-02-14T18:51:49-08:00">Feb 14, 2019</time>
         </li>
         
-        
 
         
 
-        <li>8 min read</li>
+        <li>8 minutes read</li>
     </ul>
 </aside>
-    
 
     
 
-<p>Problems from Column #4: Writing Correct Programs</p>
-
+    <p>Problems from Column #4: Writing Correct Programs</p>
 <h1 id="lessons">Lessons</h1>
-
 <ul>
 <li>Consider using formal verification methods on tricky functions</li>
 <li>Loop invariants are a helpful tool</li>
 </ul>
-
 <h1 id="problem-1">Problem #1</h1>
-
 <p>As laborious as our proof of binary search was, it is still unfinished by some standards. How would you prove that the program is free of run-time errors (such as division by zero, word overflow, variables out of declared range, or array indices out of bounds)? If you have a background in discrete mathematics, can you formatlize the proof in a logical system?</p>
-
 <h1 id="problem-2">Problem #2</h1>
-
 <p>If the original binary search was too easy for you, try the variant that returns in <em>p</em> the position of the first occurence of t in the array x (if there are multiple occurences of t, the original algorithm returns an arbitrary one). Your code should make a logarithmic number of comparisons of array elements; it is possible to do the job in log_2(n) such comparisons.</p>
-
 <h1 id="problem-3">Problem #3</h1>
-
 <p>Write and verify a recursive binary search program. Which parts of the code and proof stay the same as in the iterative version, and which parts change?</p>
-
 <p>First the iterative version of bsearch:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// NOTE: this is the interface that he describes in the
-</span><span style="color:#75715e">// book, but a half open interval is definitely the
-</span><span style="color:#75715e">// better way to code bsearch (see c++ standard lib)
+</span><span style="color:#75715e"></span><span style="color:#75715e">// book, but a half open interval is definitely the
+</span><span style="color:#75715e"></span><span style="color:#75715e">// better way to code bsearch (see c++ standard lib)
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bsearch</span>(<span style="color:#66d9ef">int</span> t, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x, <span style="color:#66d9ef">int</span> n)
 {
     <span style="color:#75715e">/*
@@ -112,11 +114,11 @@
     <span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
     <span style="color:#66d9ef">int</span> m;
-    <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> u) {
+    <span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> u) {
 		m <span style="color:#f92672">=</span> l <span style="color:#f92672">+</span> ((u <span style="color:#f92672">-</span> l) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
         <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">&lt;</span> t) {
             l <span style="color:#f92672">=</span> m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">==</span> t) {
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> t) {
             <span style="color:#66d9ef">return</span> m;
         } <span style="color:#66d9ef">else</span> { <span style="color:#75715e">// x[m] &gt; t
 </span><span style="color:#75715e"></span>            u <span style="color:#f92672">=</span> m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
@@ -124,109 +126,77 @@
     }
     <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 }
-</code></pre></div>
-<p>The recursive version. Interesting note: I didn&rsquo;t realize that lambdas can&rsquo;t be used recursively:</p>
+</code></pre></div><p>The recursive version. Interesting note: I didn't realize that lambdas can't be used recursively:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">go</span>(<span style="color:#66d9ef">int</span> t, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x, <span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> u)
 {
     <span style="color:#66d9ef">if</span> (l <span style="color:#f92672">&gt;</span> u)        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
     <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> l <span style="color:#f92672">+</span> ((u <span style="color:#f92672">-</span> l) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
     <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">&lt;</span> t)       <span style="color:#66d9ef">return</span> go(t, x, m<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, u);
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">==</span> t) <span style="color:#66d9ef">return</span> m;
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (x[m] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> t) <span style="color:#66d9ef">return</span> m;
     <span style="color:#66d9ef">else</span>                <span style="color:#66d9ef">return</span> go(t, x, l, m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
 }
 
 <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bsearch_recursive</span>(<span style="color:#66d9ef">int</span> t, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>x, <span style="color:#66d9ef">int</span> n) { <span style="color:#66d9ef">return</span> go(t, x, <span style="color:#ae81ff">0</span>, n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); }
-</code></pre></div>
-<h1 id="problem-4">Problem #4</h1>
-
+</code></pre></div><h1 id="problem-4">Problem #4</h1>
 <p>Add fictitious &ldquo;timing variables&rdquo; to your binary search program to count the number of comparisons it makes, and use program verification techniques to prove that its run time is indeed logarithmic.</p>
-
 <h1 id="problem-5">Problem #5</h1>
-
 <p>Prove that this program terminates when its input <em>x</em> is a positive integer.</p>
-
 <pre><code>while x != 1 do
     if even(x)
         x = x/2
     else
         x = 3*x+1
-</code></pre>
-
-<p>The hint for this problem says, &ldquo;If you solve this problem, run to the nearest mathematics department and ask for a Ph.D.&rdquo;. So going to wait on this solution.</p>
-
+</code></pre><p>The hint for this problem says, &ldquo;If you solve this problem, run to the nearest mathematics department and ask for a Ph.D.&quot;. So going to wait on this solution.</p>
 <h1 id="problem-6">Problem #6</h1>
-
 <p>David Gries calls this the &ldquo;Coffee Can Problem&rdquo; in his <em>Science of Programming</em>. You are initially given a coffee can that contains some black beans and some white beans and a large pile of &ldquo;extra&rdquo; black beans. You then repeat the following process until there is a single bean left in the can.</p>
-
 <pre><code>Randomly select two beans from the can.
 If they are the same color:
     throw them both out and insert an extra black bean.
 If they are different colors:
     return the white bean to the can and throw out the black.
 </code></pre>
-
 <p>Prove that the process terminates. What can you say about the color of the final remaining bean as a function of the number of black and white beans originally in the can?</p>
-
 <p>If even white, then black final bean.</p>
-
 <h1 id="problem-7">Problem #7</h1>
-
-<p>A colleague faced the following problem in a program to draw lines on a bit-mapped display. An array of <em>n</em> pairs of reals (a_i, b_i) defined the <em>n</em> lines y_i = a_i*x + b_i. The lines were ordered in the x-iunterval [0, 1] in the sense that y<em>i &lt; y</em>{i+1} for all values of <em>i</em> between 0 and n-2 and all values of <em>x</em> in [0,1]. Less formally, the lines don&rsquo;t touch in the vertical slab. Given a point (x,y), where 0&lt;=x&lt;=1, he wanted to determine the two lines that bracket the point. How could he solve the problem quickly?</p>
-
-<p>It&rsquo;s not clear what to do if the given point is above the top line or below the bottom line, but this is covers the common case:</p>
+<p>A colleague faced the following problem in a program to draw lines on a bit-mapped display. An array of <em>n</em> pairs of reals (a_i, b_i) defined the <em>n</em> lines y_i = a_i*x + b_i. The lines were ordered in the x-iunterval [0, 1] in the sense that y_i &lt; y_{i+1} for all values of *i* between 0 and n-2 and all values of *x* in [0,1]. Less formally, the lines don't touch in the vertical slab. Given a point (x,y), where 0&lt;=x&lt;=1, he wanted to determine the two lines that bracket the point. How could he solve the problem quickly?</p>
+<p>It's not clear what to do if the given point is above the top line or below the bottom line, but this is covers the common case:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Iter</span><span style="color:#f92672">&gt;</span>
-std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span>Iter, Iter<span style="color:#f92672">&gt;</span> find_line(Iter first, Iter last, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> x, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> y)
+std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>pair<span style="color:#f92672">&lt;</span>Iter, Iter<span style="color:#f92672">&gt;</span> find_line(Iter first, Iter last, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> x, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> y)
 {
-    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> compare <span style="color:#f92672">=</span> [x](<span style="color:#66d9ef">double</span> y, std<span style="color:#f92672">::</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>, <span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> p) <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">bool</span> {
+    <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> compare <span style="color:#f92672">=</span> [x](<span style="color:#66d9ef">double</span> y, std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>, <span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> p) <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">bool</span> {
         <span style="color:#66d9ef">return</span> y <span style="color:#f92672">&lt;</span> (x<span style="color:#f92672">*</span>p.first <span style="color:#f92672">+</span> p.second);
     };
-    <span style="color:#66d9ef">auto</span> hi <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>upper_bound(first, last, y, compare);
-    <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>make_pair(hi <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, hi);
+    <span style="color:#66d9ef">auto</span> hi <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>upper_bound(first, last, y, compare);
+    <span style="color:#66d9ef">return</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>make_pair(hi <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, hi);
 }
-</code></pre></div>
-<h1 id="problem-8">Problem #8</h1>
-
-<p>Binary search is fundamentally faster than sequential search: to search an <em>n</em>-element table, it makes roughtly log_{2}(n) comparisons while sequential search makes roughly n/2. While it is often fast enough, in a few cases binary search must be made faster yet. Although you can&rsquo;t reduce the logarithmic number of comparisons made by the algorithm, can you rewrite the binary search code to be faster? For definiteness, assume that you are to search a sorted table of n=1000 integers.</p>
-
+</code></pre></div><h1 id="problem-8">Problem #8</h1>
+<p>Binary search is fundamentally faster than sequential search: to search an <em>n</em>-element table, it makes roughtly log_{2}(n) comparisons while sequential search makes roughly n/2. While it is often fast enough, in a few cases binary search must be made faster yet. Although you can't reduce the logarithmic number of comparisons made by the algorithm, can you rewrite the binary search code to be faster? For definiteness, assume that you are to search a sorted table of n=1000 integers.</p>
 <h1 id="problem-9">Problem #9</h1>
-
 <p>As exercises in program verification, precisely specify the input/output behavior of each of the following program fragments and show that the code meets its specification. The first program implements the vector addition a = b + c.</p>
-
 <pre><code>i = 0
 while i &lt; n
     a[i] = b[i] + c[i]
     i = i + 1
-</code></pre>
-
-<p>input: array b with length n
-       array c with length n
-       output array a with length n
+</code></pre><p>input: array b with length n
+array c with length n
+output array a with length n
 output: array a s.t. a[i] = b[i] + c[i]</p>
-
 <h3 id="inline-answer">Inline Answer</h3>
-
 <pre><code>i = 0
 while i &lt; n
     assert i in range(0, n-1)
     a[i] = b[i] + c[i]
     assert a[i] = b[i] + c[i] (as desired)
 assert i = n, therefore all indices were visited
-</code></pre>
-
-<p>This function is so straightforward, I&rsquo;m not really sure what kind of proof is necessary&hellip; The only thing really to prove is that i visits all values in the range [0, n-1], which proven by inspection.</p>
-
+</code></pre><p>This function is so straightforward, I'm not really sure what kind of proof is necessary&hellip; The only thing really to prove is that i visits all values in the range [0, n-1], which proven by inspection.</p>
 <p>(This code and the next two fragments expand the for i=[0, n) loop to a while loop with an increment at the end.) The next fragment computes the maximum value in the array <em>x</em>.</p>
-
 <pre><code>max = x[0]
 i = 1
 while i &lt; n do
     if x[i] &gt; max
         max = x[i]
     i = i + 1
-</code></pre>
-
-<h3 id="inline-answer-1">Inline Answer</h3>
-
+</code></pre><h3 id="inline-answer-1">Inline Answer</h3>
 <pre><code>max = x[0]
 i = 1
 while i &lt; n do
@@ -236,12 +206,8 @@ while i &lt; n do
         max = x[i]
     i = i + 1
 assert i = n, therefore all indicies 0 .. n-1 were visited
-</code></pre>
-
-<p>I think the key here is the pre-condition that x is max element in the range(0, i-1) at every step, then via proof by induction by we can see that x will be the max value when the loop exits.</p>
-
+</code></pre><p>I think the key here is the pre-condition that x is max element in the range(0, i-1) at every step, then via proof by induction by we can see that x will be the max value when the loop exits.</p>
 <p>This sequential search program returns the position of the first occurrence of <em>t</em> in the array x[0..n-1].</p>
-
 <pre><code>i = 0
 while i &lt; n &amp;&amp; x[i] != t
     i = i+1
@@ -249,10 +215,7 @@ if i &gt;= n
     p = -1
 else
     p = i
-</code></pre>
-
-<h3 id="inline-answer-2">Inline Answer</h3>
-
+</code></pre><h3 id="inline-answer-2">Inline Answer</h3>
 <pre><code>i = 0
 while i &lt; n &amp;&amp; x[i] != t
     assert t not in range(0, i)
@@ -262,12 +225,8 @@ if i &gt;= n
     return -1
 else
     p = i
-</code></pre>
-
-<p>The loop invariant is &ldquo;t not in range(0, i)&rdquo;, and we visit all values of i in the range [0, n).</p>
-
+</code></pre><p>The loop invariant is &ldquo;t not in range(0, i)&quot;, and we visit all values of i in the range [0, n).</p>
 <p>This program computes the n-th power of x in time proportional to the logarithm of <em>n</em>. This recursive program is straightforward to code and to verify; the iterative version is subtle, and is left as an additional problem.</p>
-
 <pre><code>function exp(x, n)
         pre n &gt;= 0
         post result = x^n
@@ -277,10 +236,7 @@ else
         return square(exp(x, n/2))
     else
         return x*exp(x, n-1)
-</code></pre>
-
-<h3 id="inline-answer-3">Inline Answer</h3>
-
+</code></pre><h3 id="inline-answer-3">Inline Answer</h3>
 <pre><code>function exp(x, n)
         pre n &gt;= 0
         post result = x^n
@@ -293,42 +249,31 @@ else
     else
         assert x^n == x*(x^(n-1))
         return x*exp(x, n-1)
-</code></pre>
-
-<p>The loop invariant is result = x^n, which we will decompose until n = 0, at which point we know x^0 = 1. The only thing to really prove is that n will reach 0: since on each iteration either n -&gt; floor(n/2) or n -&gt; n - 1, n will eventually reach 0.</p>
-
+</code></pre><p>The loop invariant is result = x^n, which we will decompose until n = 0, at which point we know x^0 = 1. The only thing to really prove is that n will reach 0: since on each iteration either n -&gt; floor(n/2) or n -&gt; n - 1, n will eventually reach 0.</p>
 <p>The iterative version of this function is:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">exp</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> n)
 {
     <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
     <span style="color:#66d9ef">for</span> (;;) {
         <span style="color:#75715e">// loop invariant: exp = x^n
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
             result <span style="color:#f92672">=</span> result <span style="color:#f92672">*</span> x;
         }
         n <span style="color:#f92672">=</span> n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> (n <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
             <span style="color:#66d9ef">break</span>;
         }
         x <span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> x;
     }
     <span style="color:#66d9ef">return</span> result;
 }
-</code></pre></div>
-<h1 id="problem-10">Problem #10</h1>
-
+</code></pre></div><h1 id="problem-10">Problem #10</h1>
 <p>Introduce errors into the binary search function and see whether (and how) they are caught by attempting to verify the buggy code.</p>
-
 <h1 id="problem-11">Problem #11</h1>
-
 <p>Write and prove the correctness of a recursive binary search in C or C++ with this declaration:</p>
-
 <pre><code>int binarysearch(DataType x[], int n)
-</code></pre>
-
-<p>Use this function alone; do not call any other recursive functions.</p>
-
-<p>It is not at all clear to me what this question is asking. The way the function signature is written, it doesn&rsquo;t even take the element that we are searching for. For the recursive binary search, see solution to problem #3.</p>
+</code></pre><p>Use this function alone; do not call any other recursive functions.</p>
+<p>It is not at all clear to me what this question is asking. The way the function signature is written, it doesn't even take the element that we are searching for. For the recursive binary search, see solution to problem #3.</p>
 
 
 </article>
@@ -356,12 +301,14 @@ else
 
 </main>
     <footer>
-        <h6> | 
+        <h6> |
             Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
-            <a href="https://selavy.github.io/index.xml">Subscribe</a></h6>
+            <a href="https://selavy.github.io/index.xml">Subscribe </a></h6>
     </footer>
 </div>
 <script src="https://selavy.github.io/js/scripts.js"></script>
+
 </body>
 
 </html>
+
