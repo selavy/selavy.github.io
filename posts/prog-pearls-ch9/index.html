@@ -7,18 +7,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.61.0" />
+  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.68.3" />
     
 
-  <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://selavy.github.io/posts/" />
-<meta property="og:updated_time" content="2019-02-26T19:32:27-08:00" />
+  <meta property="og:title" content="About" />
+<meta property="og:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://selavy.github.io/about/" />
+<meta property="article:published_time" content="2019-01-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-19T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="About"/>
+<meta name="twitter:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub."/>
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
@@ -30,7 +35,7 @@
   <div id="container">
     <header>
       <h1>
-                <a href="https://selavy.github.io/">c'est la vie</a>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
             </h1>
 
       <ul id="social-media">
@@ -88,7 +93,7 @@
     
 
     <p>Problems from Column #9: Code Tuning</p>
-<p>Note: I did skip several problems from several columns because I didn't find them particularly useful. Several of the questions here on out are also pretty dated so I'm just going to jump around to the ones that I like.</p>
+<p>Note: I did skip several problems from several columns because I didn&rsquo;t find them particularly useful. Several of the questions here on out are also pretty dated so I&rsquo;m just going to jump around to the ones that I like.</p>
 <h1 id="lessons">Lessons</h1>
 <ul>
 <li>Speed comes from knowing your data and specializing.
@@ -101,29 +106,29 @@
 <h1 id="problem-6">Problem #6</h1>
 <p>C and C++ libraries provide character classification functions such as <em>isdigit</em>, <em>isupper</em>  and <em>islower</em> to determine the types of characters. How would you implement these functions.</p>
 <ol>
-<li>This is probably more complicated with locales, and I think these functions make actually touch singleton locale data, but I'm going to ignore that. It's just interesting if you are using them in a multi-threaded context. 2) For the simple american english ASCII case, we know that these functions only apply to signed 8-bit characters, where the MSB is 0. So I would make a 128 entry lookup table; if the upper bit is set, then return false, other LUT.</li>
+<li>This is probably more complicated with locales, and I think these functions make actually touch singleton locale data, but I&rsquo;m going to ignore that. It&rsquo;s just interesting if you are using them in a multi-threaded context. 2) For the simple american english ASCII case, we know that these functions only apply to signed 8-bit characters, where the MSB is 0. So I would make a 128 entry lookup table; if the upper bit is set, then return false, other LUT.</li>
 </ol>
 <h1 id="problem-7">Problem #7</h1>
 <p>Given a very long sequence (say, billions or trillions) or bytes, how would you efficiently count the total number of one bits? (That is how many bits are turned on in the entire sequence?)</p>
-<p>I'd build a 512-entry LUT, which would yield code like:</p>
+<p>I&rsquo;d build a 512-entry LUT, which would yield code like:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Sequence bytes;
 <span style="color:#66d9ef">uint8_t</span> LUT[<span style="color:#ae81ff">512</span>]; <span style="color:#75715e">// contains # of set bits in each value [0, 512)
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">uint64_t</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-    count <span style="color:#f92672">+</span><span style="color:#f92672">=</span> LUT[bytes[i]];
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N; <span style="color:#f92672">++</span>i) {
+    count <span style="color:#f92672">+=</span> LUT[bytes[i]];
 }
 </code></pre></div><h1 id="problem-8">Problem #8</h1>
 <p>How can sentinels be used in a program to find the maximum element in an array?</p>
 <p>We can avoid the i &lt; N, most of the time (for many inputs), if we set the last element to INT_MAX, and only compare to INT_MAX <em>if</em> vs[i] is greater than the current max. This saves comparisons except in the sorted inputs case, where we only added a small amount of overhead.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find_max</span>(std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> vs) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find_max</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> vs) {
     <span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> vs.size();
     <span style="color:#66d9ef">int</span> hold <span style="color:#f92672">=</span> vs[N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
     vs[N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> INT_MAX;
     <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> INT_MIN;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; ; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-        assert(i <span style="color:#f92672">&lt;</span> N <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sentinel failed!</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; ; <span style="color:#f92672">++</span>i) {
+        assert(i <span style="color:#f92672">&lt;</span> N <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;sentinel failed!&#34;</span>);
         <span style="color:#66d9ef">if</span> (vs[i] <span style="color:#f92672">&gt;</span> result) {
-            <span style="color:#66d9ef">if</span> (vs[i] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> INT_MAX) {
+            <span style="color:#66d9ef">if</span> (vs[i] <span style="color:#f92672">==</span> INT_MAX) {
                 <span style="color:#66d9ef">break</span>;
             }
             result <span style="color:#f92672">=</span> vs[i];
@@ -140,7 +145,7 @@
 <h1 id="problem-10">Problem #10</h1>
 <p>D. B. Lomet observes that hashing may solve the 1000-integer search problem more efficiently than the tuned binary search. Implement a fast hashing program and compare it to the tuned binary search; how do they compare in terms of speed and space?</p>
 <h1 id="problem-11">Problem #11</h1>
-<p>In the early 1960's, Vic Berecz found that most of the time in a simulation program at Sikorsky Aircraft was devoted to computing trigonmetric functions. Further investigation showed that the functions were computed only at integral multiples of five degrees. How did he reduce the run time?</p>
+<p>In the early 1960&rsquo;s, Vic Berecz found that most of the time in a simulation program at Sikorsky Aircraft was devoted to computing trigonmetric functions. Further investigation showed that the functions were computed only at integral multiples of five degrees. How did he reduce the run time?</p>
 <p>Either cache the results, or make a LUT. You only need 360 / 5 = 72 elements per function.</p>
 <h1 id="problem-12">Problem #12</h1>
 <p>One sometimes tunes programs by thinking about mathematics rather than code.</p>
@@ -151,7 +156,7 @@ xi = 1
 for i = [1, n]
     xi = x * xi
     y = y + a[i]*xi
-</code></pre><p>Use horner's method:</p>
+</code></pre><p>Use horner&rsquo;s method:</p>
 <pre><code>y = a[n]
 for i = [n-1 .. 1] # N.B. backwards
     y *= x
@@ -160,8 +165,8 @@ for i = [n-1 .. 1] # N.B. backwards
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">atoi</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> s) {
     <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">while</span> (<span style="color:#f92672">*</span>s) {
-        result <span style="color:#f92672">*</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-        result <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#f92672">*</span>s<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        result <span style="color:#f92672">*=</span> <span style="color:#ae81ff">10</span>;
+        result <span style="color:#f92672">+=</span> <span style="color:#f92672">*</span>s<span style="color:#f92672">++</span>;
     }
     <span style="color:#66d9ef">return</span> result;
 }

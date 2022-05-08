@@ -7,18 +7,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.61.0" />
+  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.68.3" />
     
 
-  <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://selavy.github.io/posts/" />
-<meta property="og:updated_time" content="2019-02-26T19:32:27-08:00" />
+  <meta property="og:title" content="About" />
+<meta property="og:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://selavy.github.io/about/" />
+<meta property="article:published_time" content="2019-01-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-19T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="About"/>
+<meta name="twitter:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub."/>
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
@@ -30,7 +35,7 @@
   <div id="container">
     <header>
       <h1>
-                <a href="https://selavy.github.io/">c'est la vie</a>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
             </h1>
 
       <ul id="social-media">
@@ -114,38 +119,38 @@
 <h1 id="lessons">Lessons</h1>
 <ul>
 <li>Break problem down into primitives for which there are known algorithms.</li>
-<li>&ldquo;A Problem Solver's Perspective&rdquo;: Good programmers are a little bit lazy: they sit back and wait for an insight rather than rushing forward with their first idea.</li>
+<li>&ldquo;A Problem Solver&rsquo;s Perspective&rdquo;: Good programmers are a little bit lazy: they sit back and wait for an insight rather than rushing forward with their first idea.</li>
 </ul>
 <h1 id="problem-1">Problem #1</h1>
-<p>Consider the problem of finding all the anagrmas of a given input word. How would you solve this problem given only the word and the dictionary? What if you could spend some time and space to process the dictionary before answering any queries?</p>
+<p>Consider the problem of finding all the anagrams of a given input word. How would you solve this problem given only the word and the dictionary? What if you could spend some time and space to process the dictionary before answering any queries?</p>
 <p>The key is to generate a hash for each word that is the same regardless of order of the letters so that anagrams will hash to the same value. The most straightforward solution is to sort the letters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> Dictionary <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string<span style="color:#f92672">&gt;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">using</span> Dictionary <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span>;
 <span style="color:#66d9ef">const</span> Dictionary dict <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">deposit</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">dopiest</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">posited</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">topside</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">peter</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">word</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sail</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">smile</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">ant</span><span style="color:#e6db74">&#34;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">tan</span><span style="color:#e6db74">&#34;</span>,
+    <span style="color:#e6db74">&#34;deposit&#34;</span>,
+    <span style="color:#e6db74">&#34;dopiest&#34;</span>,
+    <span style="color:#e6db74">&#34;posited&#34;</span>,
+    <span style="color:#e6db74">&#34;topside&#34;</span>,
+    <span style="color:#e6db74">&#34;peter&#34;</span>,
+    <span style="color:#e6db74">&#34;word&#34;</span>,
+    <span style="color:#e6db74">&#34;sail&#34;</span>,
+    <span style="color:#e6db74">&#34;smile&#34;</span>,
+    <span style="color:#e6db74">&#34;ant&#34;</span>,
+    <span style="color:#e6db74">&#34;tan&#34;</span>,
 };
 
-<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> sign <span style="color:#f92672">=</span> [](std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string w) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string {
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>sort(w.begin(), w.end());
+<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> sign <span style="color:#f92672">=</span> [](std<span style="color:#f92672">::</span>string w) <span style="color:#f92672">-&gt;</span> std<span style="color:#f92672">::</span>string {
+    std<span style="color:#f92672">::</span>sort(w.begin(), w.end());
     <span style="color:#66d9ef">return</span> w;
 };
 
-<span style="color:#66d9ef">using</span> Anagrams <span style="color:#f92672">=</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string<span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">using</span> Anagrams <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>string<span style="color:#f92672">&gt;</span>;
 
-Anagrams <span style="color:#a6e22e">find_anagrams</span>(<span style="color:#66d9ef">const</span> Dicionary<span style="color:#f92672">&amp;</span> dict, std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string word)
+Anagrams <span style="color:#a6e22e">find_anagrams</span>(<span style="color:#66d9ef">const</span> Dicionary<span style="color:#f92672">&amp;</span> dict, std<span style="color:#f92672">::</span>string word)
 {
     Anagrams anagrams;
-    <span style="color:#66d9ef">const</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string sig <span style="color:#f92672">=</span> sign(word);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> w: dict) {
-        <span style="color:#66d9ef">if</span> (sig <span style="color:#f92672">=</span><span style="color:#f92672">=</span> sign(w)) {
+    <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>string sig <span style="color:#f92672">=</span> sign(word);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> w: dict) {
+        <span style="color:#66d9ef">if</span> (sig <span style="color:#f92672">==</span> sign(w)) {
             anagrams.push_back(w);
         }
     }
@@ -154,16 +159,16 @@ Anagrams <span style="color:#a6e22e">find_anagrams</span>(<span style="color:#66
 </code></pre></div><p>If you can preprocess the data, then it is worth setting up a map of Hash -&gt; Vector[Words]. Then you can find the anagrams in O(1).</p>
 <h1 id="problem-2">Problem #2</h1>
 <p>Given a sequential file containing 4,300,000,000 32-bit integers, how can you find one that appears at least twice?</p>
-<p>4.3 TB * 4B ~= 16TB so we can't hold all the values in memory. First sort the integers (probably using merge sort).  Then, traverse the integers and look for any values that are equal to the previous value.</p>
+<p>4.3 TB * 4B ~= 16TB so we can&rsquo;t hold all the values in memory. First sort the integers (probably using merge sort).  Then, traverse the integers and look for any values that are equal to the previous value.</p>
 <h1 id="problem-3">Problem #3</h1>
 <p>We skimmed two vector rotation algorithms that require subtle code; implement each as a program.  How does the greatest common divisor of i and n appear in each program?</p>
 <h2 id="rotate-implementation">Rotate implementation:</h2>
 <ul>
-<li>C++ Technique: Use a tag to dispatch to different implementations of your algorithmn based on what iterator concept you've been passed.</li>
+<li>C++ Technique: Use a tag to dispatch to different implementations of your algorithmn based on what iterator concept you&rsquo;ve been passed.</li>
 <li>C++ Technique: STL has a std::iter_swap(), which makes several of these algorithms much cleaner.</li>
 <li>Comment: C++ function signatures are getting so noisy, especially when you have attribute like [[nodiscard]], constexpr, and conditional noexcept.
 <ul>
-<li>I'm still trying to find a formatting style that I like for this.</li>
+<li>I&rsquo;m still trying to find a formatting style that I like for this.</li>
 </ul>
 </li>
 </ul>
@@ -172,34 +177,34 @@ Anagrams <span style="color:#a6e22e">find_anagrams</span>(<span style="color:#66
 <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> BidirectionalIt<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">void</span> reverse(BidirectionalIt first,
              BidirectionalIt last,
-             std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>bidirectional_iterator_tag
-             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iter_swap(first, last)))
+             std<span style="color:#f92672">::</span>bidirectional_iterator_tag
+             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">::</span>iter_swap(first, last)))
 {
-    <span style="color:#66d9ef">while</span> ((first <span style="color:#f92672">!</span><span style="color:#f92672">=</span> last) <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> (first <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#f92672">-</span>last)) {
-        std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iter_swap(first<span style="color:#f92672">+</span><span style="color:#f92672">+</span>, last);
+    <span style="color:#66d9ef">while</span> ((first <span style="color:#f92672">!=</span> last) <span style="color:#f92672">&amp;&amp;</span> (first <span style="color:#f92672">!=</span> <span style="color:#f92672">--</span>last)) {
+        std<span style="color:#f92672">::</span>iter_swap(first<span style="color:#f92672">++</span>, last);
     }
 }
 
 
 <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> RandomAccessIt<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">void</span> reverse(RandomAccessIt first, RandomAccessIt last,
-             std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>random_access_iterator_tag
-             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iter_swap(first, last)))
+             std<span style="color:#f92672">::</span>random_access_iterator_tag
+             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">::</span>iter_swap(first, last)))
 {
-    <span style="color:#66d9ef">if</span> (first <span style="color:#f92672">=</span><span style="color:#f92672">=</span> last) {
+    <span style="color:#66d9ef">if</span> (first <span style="color:#f92672">==</span> last) {
         <span style="color:#66d9ef">return</span>;
     }
-    <span style="color:#66d9ef">while</span> (first <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">-</span>last) {
-        std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iter_swap(first<span style="color:#f92672">+</span><span style="color:#f92672">+</span>, last);
+    <span style="color:#66d9ef">while</span> (first <span style="color:#f92672">&lt;</span> <span style="color:#f92672">--</span>last) {
+        std<span style="color:#f92672">::</span>iter_swap(first<span style="color:#f92672">++</span>, last);
     }
 }
 
 <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> BidirectionalIt<span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">void</span> reverse(BidirectionalIt first,
              BidirectionalIt last
-             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iter_swap(first, last)))
+             ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(std<span style="color:#f92672">::</span>iter_swap(first, last)))
 {
-    <span style="color:#66d9ef">using</span> iterator_category <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iterator_traits<span style="color:#f92672">&lt;</span>BidirectionalIt<span style="color:#f92672">&gt;</span><span style="color:#f92672">:</span><span style="color:#f92672">:</span>iterator_category;
+    <span style="color:#66d9ef">using</span> iterator_category <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>BidirectionalIt<span style="color:#f92672">&gt;::</span>iterator_category;
     reverse(first, last, iterator_category());
 }
 
@@ -209,17 +214,17 @@ Anagrams <span style="color:#a6e22e">find_anagrams</span>(<span style="color:#66
 <span style="color:#66d9ef">void</span> rotate(BidirectionalIt first,
             BidirectionalIt n_first,
             BidirectionalIt last
-            ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(my<span style="color:#f92672">:</span><span style="color:#f92672">:</span>reverse(first, n_first)))
+            ) <span style="color:#66d9ef">noexcept</span>(<span style="color:#66d9ef">noexcept</span>(my<span style="color:#f92672">::</span>reverse(first, n_first)))
 {
-    my<span style="color:#f92672">:</span><span style="color:#f92672">:</span>reverse(first, n_first);
-    my<span style="color:#f92672">:</span><span style="color:#f92672">:</span>reverse(n_first, last);
-    my<span style="color:#f92672">:</span><span style="color:#f92672">:</span>reverse(first, last);
+    my<span style="color:#f92672">::</span>reverse(first, n_first);
+    my<span style="color:#f92672">::</span>reverse(n_first, last);
+    my<span style="color:#f92672">::</span>reverse(first, last);
 }
 </code></pre></div><h2 id="rotate-implementation-2-shufflin">Rotate Implementation #2: shufflin&rsquo;</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">I</span><span style="color:#f92672">&gt;</span>
 I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
 {
-    <span style="color:#66d9ef">while</span> (n <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">while</span> (n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
         I t <span style="color:#f92672">=</span> m <span style="color:#f92672">%</span> n;
         m <span style="color:#f92672">=</span> n;
         n <span style="color:#f92672">=</span> t;
@@ -231,13 +236,13 @@ I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">It</span><span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">void</span> rotate2(It first, It n_first, It last) <span style="color:#66d9ef">noexcept</span>
 {
-    <span style="color:#66d9ef">using</span> Distance <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iterator_traits<span style="color:#f92672">&lt;</span>It<span style="color:#f92672">&gt;</span><span style="color:#f92672">:</span><span style="color:#f92672">:</span>difference_type;
-    <span style="color:#66d9ef">using</span> ValueType <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iterator_traits<span style="color:#f92672">&lt;</span>It<span style="color:#f92672">&gt;</span><span style="color:#f92672">:</span><span style="color:#f92672">:</span>value_type;
+    <span style="color:#66d9ef">using</span> Distance <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>It<span style="color:#f92672">&gt;::</span>difference_type;
+    <span style="color:#66d9ef">using</span> ValueType <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>iterator_traits<span style="color:#f92672">&lt;</span>It<span style="color:#f92672">&gt;::</span>value_type;
 
     Distance n <span style="color:#f92672">=</span> last <span style="color:#f92672">-</span> first;
     Distance i <span style="color:#f92672">=</span> n_first <span style="color:#f92672">-</span> first;
     Distance cycles <span style="color:#f92672">=</span> gcd(i, n);
-    <span style="color:#66d9ef">for</span> (Distance u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; u <span style="color:#f92672">&lt;</span> cycles; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>u) {
+    <span style="color:#66d9ef">for</span> (Distance u <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; u <span style="color:#f92672">&lt;</span> cycles; <span style="color:#f92672">++</span>u) {
         Distance j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> u;
         Distance k <span style="color:#f92672">=</span> j <span style="color:#f92672">+</span> i;
         Distance z <span style="color:#f92672">=</span> k <span style="color:#f92672">%</span> n;
@@ -246,9 +251,9 @@ I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
         <span style="color:#66d9ef">do</span> {
             <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> j) <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> z);
             j <span style="color:#f92672">=</span> z;
-            k <span style="color:#f92672">+</span><span style="color:#f92672">=</span> i;
+            k <span style="color:#f92672">+=</span> i;
             z <span style="color:#f92672">=</span> k <span style="color:#f92672">%</span> n;
-        } <span style="color:#66d9ef">while</span> (z <span style="color:#f92672">!</span><span style="color:#f92672">=</span> u);
+        } <span style="color:#66d9ef">while</span> (z <span style="color:#f92672">!=</span> u);
         <span style="color:#f92672">*</span>(first <span style="color:#f92672">+</span> j) <span style="color:#f92672">=</span> t;
     }
 }
@@ -259,20 +264,20 @@ I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
 <p>Vector rotation functions change the vector <em>ab</em> to <em>ba</em>; how would you transform the vector <em>abc</em> to <em>cba</em>? (This models the problem of swapping nonadjacent blocks of memory).</p>
 <p>Use the fact that $$(abc)^r = (a^rb^rc^r)^r$$</p>
 <h1 id="problem-6">Problem 6</h1>
-<p>In the late 1970's, Bell Labs deployed a &ldquo;user-operated directory assistance&rdquo; program that allowed employeeds to look up a number in a company telephone directory using a standard push-button telephone.</p>
+<p>In the late 1970&rsquo;s, Bell Labs deployed a &ldquo;user-operated directory assistance&rdquo; program that allowed employeeds to look up a number in a company telephone directory using a standard push-button telephone.</p>
 <p><img src="https://selavy.github.io/img/push_button_telephone.png" alt="Push Button Telephone image"></p>
 <p>This problem is solved just like the anagram problem.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// NOTE: other time vs. space tradeoffs exist, could build full
-</span><span style="color:#75715e"></span><span style="color:#75715e">//       256 entry to avoid AND and sub
+</span><span style="color:#75715e">//       256 entry to avoid AND and sub
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> ButtonMap[<span style="color:#ae81ff">64</span>] <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">2</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">2</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">2</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">5</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">5</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">5</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">6</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">6</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">6</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">8</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">8</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">8</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">2</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">2</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">2</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">5</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">5</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">5</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">6</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">6</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">6</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">7</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">8</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">8</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">8</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>,
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">9</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">0</span><span style="color:#e6db74">&#39;</span>,
+    <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>,
+    <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>,
+    <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>,
+    <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>,
+    <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;3&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>,
+    <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;4&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>, <span style="color:#e6db74">&#39;6&#39;</span>,
+    <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;7&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;8&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>,
+    <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>, <span style="color:#e6db74">&#39;0&#39;</span>,
 };
 
 <span style="color:#a6e22e">[[nodiscard]]</span> <span style="color:#66d9ef">char</span> Lookup(<span style="color:#66d9ef">char</span> c) <span style="color:#66d9ef">noexcept</span>
@@ -281,22 +286,22 @@ I gcd(I m, I n) <span style="color:#66d9ef">noexcept</span>
 </span><span style="color:#75715e"></span>}
 
 <span style="color:#a6e22e">[[nodiscard]]</span>
-std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string telesign(std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string first, std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string last) <span style="color:#66d9ef">noexcept</span>
+std<span style="color:#f92672">::</span>string telesign(std<span style="color:#f92672">::</span>string first, std<span style="color:#f92672">::</span>string last) <span style="color:#66d9ef">noexcept</span>
 {
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string rv;
+    std<span style="color:#f92672">::</span>string rv;
     rv.reserve(last.size() <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>);
     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> c: last) {
-        rv <span style="color:#f92672">+</span><span style="color:#f92672">=</span> Lookup3(c);
+        rv <span style="color:#f92672">+=</span> Lookup3(c);
     }
-    rv <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span>;
+    rv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;*&#39;</span>;
     <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>first.empty()) {
-        rv <span style="color:#f92672">+</span><span style="color:#f92672">=</span> Lookup(first[<span style="color:#ae81ff">0</span>]);
+        rv <span style="color:#f92672">+=</span> Lookup(first[<span style="color:#ae81ff">0</span>]);
     }
-    rv <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">*</span><span style="color:#e6db74">&#39;</span>;
+    rv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;*&#39;</span>;
     <span style="color:#66d9ef">return</span> rv;
 }
 </code></pre></div><h1 id="problem-7">Problem 7</h1>
-<p>In the early 1960's, Vic Vyssotsky worked with a programmer who had to transpose a 4000-by-4000 matrix stored on magnetic tape (each record had the same format in several dozen bytes). The original program his colleague suggested would have taken fifty hours to run; how did Vyssotsky reduce the run time to half an hour?</p>
+<p>In the early 1960&rsquo;s, Vic Vyssotsky worked with a programmer who had to transpose a 4000-by-4000 matrix stored on magnetic tape (each record had the same format in several dozen bytes). The original program his colleague suggested would have taken fifty hours to run; how did Vyssotsky reduce the run time to half an hour?</p>
 <p>Answer given in book: If matrix is row-major, then prepend the column and row to each element, sort, remove the column and row.</p>
 <h1 id="problem-8">Problem 8</h1>
 <p>[J. Ullman] Given a set of <em>n</em> real numbers, a real number <em>t</em>, and an integer <em>k</em>, how quickly can you determine whether there exists a k-element subset of the set that sums to at most <em>t</em>?</p>

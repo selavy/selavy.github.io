@@ -7,18 +7,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.61.0" />
+  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.68.3" />
     
 
-  <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://selavy.github.io/posts/" />
-<meta property="og:updated_time" content="2019-02-26T19:32:27-08:00" />
+  <meta property="og:title" content="About" />
+<meta property="og:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://selavy.github.io/about/" />
+<meta property="article:published_time" content="2019-01-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-19T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="About"/>
+<meta name="twitter:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub."/>
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
@@ -30,7 +35,7 @@
   <div id="container">
     <header>
       <h1>
-                <a href="https://selavy.github.io/">c'est la vie</a>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
             </h1>
 
       <ul id="social-media">
@@ -89,7 +94,7 @@
 
     <p>Problems from Column #10: Squeezing Space</p>
 <h1 id="problem-1">Problem #1</h1>
-<p>In the late 1970's Stu Feldman build a Fortran 77 compiler that barely fit in a 64-kilobyte code space. To save space he had packed some integers in critical records into four-bit fields. When he removed the packing and stored the fields in eight bits, he found that although the data space increased by a few hundred bytes, the overall size of the program went down by several thousand bytes. Why?</p>
+<p>In the late 1970&rsquo;s Stu Feldman build a Fortran 77 compiler that barely fit in a 64-kilobyte code space. To save space he had packed some integers in critical records into four-bit fields. When he removed the packing and stored the fields in eight bits, he found that although the data space increased by a few hundred bytes, the overall size of the program went down by several thousand bytes. Why?</p>
 <p>Likely his code became simpler so the code section decreased in size.</p>
 <h1 id="problem-2">Problem #2</h1>
 <p>How would you write a program to build the sparse-matrix data structure described in Section 10.2? Can you find other simple but space-efficient data structures for this task?</p>
@@ -103,7 +108,7 @@ cat /proc/meminfo
 </code></pre><h1 id="problem-4">Problem #4</h1>
 <p>Study data in non-computer applications such as almanacs and other reference books for examples of squeezing space.</p>
 <h1 id="problem-5">Problem #5</h1>
-<p>In the early days of programming, Fred Brooks faced yet anothe problem of representing a large table on a small computer (beyond that in Section 10.1). He couldn't store the entire table in an array because there was room for only a few bits for each table entry (actually, there was one decimal digit available for each entry &ndash; I said that it was in the early days!). His second approach was to use numerical analysis to fit a function through the table. That resulted in a function that was quite close to the true table (no entry was more than a couple of units off the true entry) and required an unnoticeably small amount of memory, but legal constraints meant that the approximation wasn't good enough. How could Brooks get the required accuracy in the limited space?</p>
+<p>In the early days of programming, Fred Brooks faced yet anothe problem of representing a large table on a small computer (beyond that in Section 10.1). He couldn&rsquo;t store the entire table in an array because there was room for only a few bits for each table entry (actually, there was one decimal digit available for each entry &ndash; I said that it was in the early days!). His second approach was to use numerical analysis to fit a function through the table. That resulted in a function that was quite close to the true table (no entry was more than a couple of units off the true entry) and required an unnoticeably small amount of memory, but legal constraints meant that the approximation wasn&rsquo;t good enough. How could Brooks get the required accuracy in the limited space?</p>
 <p>Use both approaches: use the function, then keep a table of the differences to get the correct result.</p>
 <h1 id="problem-6">Problem #6</h1>
 <p>The discussion of Data Compression in Section 10.3 mentioned decoding 10a + b with / and % operations. Discuss the time and space tradeoffs involved in replacing those operations by logical operations or table lookups.</p>
@@ -116,7 +121,7 @@ cat /proc/meminfo
 <h1 id="problem-10">Problem #10</h1>
 <p>Raw sound files (such as .wav) can be compressed to .mp3 files; raw image files (such as .bmp) can be compressed to .gif or .jpg files; raw motion picture files (such as .avi) can be compressed to .mpg files. Experiment with these file formats to estimate their compression effectiveness. How effective are these special purpose compression formats when compared to general-purpose schemes (such as gzip)?</p>
 <h1 id="problem-11">Problem #11</h1>
-<p>A reader observes, &ldquo;With modern programs, it's often not the code that you write, but the code that you use that's large.&rdquo; Study your programs to see how large they are after linking. How can you reduce that space?</p>
+<p>A reader observes, &ldquo;With modern programs, it&rsquo;s often not the code that you write, but the code that you use that&rsquo;s large.&rdquo; Study your programs to see how large they are after linking. How can you reduce that space?</p>
 
 
 </article>

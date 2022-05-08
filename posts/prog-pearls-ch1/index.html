@@ -7,18 +7,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.61.0" />
+  <meta name="author" content="Peter Lesslie" /><meta name="generator" content="Hugo 0.68.3" />
     
 
-  <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://selavy.github.io/posts/" />
-<meta property="og:updated_time" content="2019-02-26T19:32:27-08:00" />
+  <meta property="og:title" content="About" />
+<meta property="og:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://selavy.github.io/about/" />
+<meta property="article:published_time" content="2019-01-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-19T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="About"/>
+<meta name="twitter:description" content="Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub."/>
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
@@ -30,7 +35,7 @@
   <div id="container">
     <header>
       <h1>
-                <a href="https://selavy.github.io/">c'est la vie</a>
+                <a href="https://selavy.github.io/">c&rsquo;est la vie</a>
             </h1>
 
       <ul id="social-media">
@@ -124,14 +129,14 @@
 </ul>
 <h1 id="problem-1">Problem #1</h1>
 <p>Q: If memory were not scarce, how would you implement a sort in a language with libraries for representing and sorting sets?</p>
-<p>This solution only works if no duplicates or don't care about them, but actually mirrors the solution that Jon gives so I think the question is poorly worded.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> set_sort(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span><span style="color:#f92672">&amp;</span> input)
+<p>This solution only works if no duplicates or don&rsquo;t care about them, but actually mirrors the solution that Jon gives so I think the question is poorly worded.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> set_sort(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> input)
 {
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>set<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> s;
+    std<span style="color:#f92672">::</span>set<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> s;
     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v: input) {
         s.insert(v);
     }
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> rv;
+    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> rv;
     <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> v: s) {
         rv.push_back(v);
     }
@@ -144,7 +149,7 @@
 <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">uint32_t</span> make_mask(size_t bit) <span style="color:#66d9ef">noexcept</span>
 {
     assert(bit <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span>);
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1u</span>) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> bit;
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1u</span>) <span style="color:#f92672">&lt;&lt;</span> bit;
 }
 
 <span style="color:#a6e22e">[[nodiscard]]</span>
@@ -162,7 +167,7 @@
 <span style="color:#a6e22e">[[nodiscard]]</span>
 <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> isset(<span style="color:#66d9ef">uint32_t</span> bitfield, size_t bit) <span style="color:#66d9ef">noexcept</span>
 {
-    <span style="color:#66d9ef">return</span> (bitfield <span style="color:#f92672">&amp;</span> make_mask(bit)) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> (bitfield <span style="color:#f92672">&amp;</span> make_mask(bit)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><p>In C++-style, which supports bitvectors that are larger than 64-bits:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> detail {
@@ -176,7 +181,7 @@
     {
         <span style="color:#66d9ef">const</span> size_t idx <span style="color:#f92672">=</span> bit <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>;
         <span style="color:#66d9ef">const</span> size_t off <span style="color:#f92672">=</span> bit <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>;
-        val[idx] <span style="color:#f92672">|</span><span style="color:#f92672">=</span> mask(off);
+        val[idx] <span style="color:#f92672">|=</span> mask(off);
     }
 
     <span style="color:#a6e22e">[[nodiscard]]</span>
@@ -184,12 +189,12 @@
     {
         <span style="color:#66d9ef">const</span> size_t idx <span style="color:#f92672">=</span> bit <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>;
         <span style="color:#66d9ef">const</span> size_t off <span style="color:#f92672">=</span> bit <span style="color:#f92672">%</span> <span style="color:#ae81ff">8</span>;
-        <span style="color:#66d9ef">return</span> (val[idx] <span style="color:#f92672">&amp;</span> mask(off)) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0u</span>;
+        <span style="color:#66d9ef">return</span> (val[idx] <span style="color:#f92672">&amp;</span> mask(off)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0u</span>;
     }
 
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clear</span>() <span style="color:#66d9ef">noexcept</span>
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">++</span>i) {
             val[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0u</span>;
         }
     }
@@ -197,8 +202,8 @@
     <span style="color:#a6e22e">[[nodiscard]]</span>
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> none() <span style="color:#66d9ef">noexcept</span>
     {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-            <span style="color:#66d9ef">if</span> (val[i] <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">++</span>i) {
+            <span style="color:#66d9ef">if</span> (val[i] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
                 <span style="color:#66d9ef">return</span> false;
             }
         }
@@ -209,8 +214,8 @@
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> all() <span style="color:#66d9ef">noexcept</span>
     {
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span> allset <span style="color:#f92672">=</span> <span style="color:#f92672">~</span><span style="color:#66d9ef">uint8_t</span>{<span style="color:#ae81ff">0</span>};
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-            <span style="color:#66d9ef">if</span> (val[i] <span style="color:#f92672">!</span><span style="color:#f92672">=</span> allset) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n_bytes; <span style="color:#f92672">++</span>i) {
+            <span style="color:#66d9ef">if</span> (val[i] <span style="color:#f92672">!=</span> allset) {
                 <span style="color:#66d9ef">return</span> false;
             }
         }
@@ -222,29 +227,29 @@
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">uint8_t</span> mask(size_t off) <span style="color:#66d9ef">noexcept</span>
     {
         assert(off <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">uint8_t</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">uint8_t</span>{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> off;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">uint8_t</span>{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">&lt;&lt;</span> off;
     }
 
     <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">constexpr</span> size_t n_bytes <span style="color:#f92672">=</span> Bytes;
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span>, n_bytes<span style="color:#f92672">&gt;</span> val;
+    std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span>, n_bytes<span style="color:#f92672">&gt;</span> val;
 };
 
 <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
 <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">StorageBase</span> {
     <span style="color:#66d9ef">using</span> value_type <span style="color:#f92672">=</span> T;
-    <span style="color:#66d9ef">static_assert</span>(std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>is_unsigned_v<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> true, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Type must be unsigned</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">static_assert</span>(std<span style="color:#f92672">::</span>is_unsigned_v<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">==</span> true, <span style="color:#e6db74">&#34;Type must be unsigned&#34;</span>);
 
     <span style="color:#66d9ef">constexpr</span> <span style="color:#a6e22e">StorageBase</span>() <span style="color:#66d9ef">noexcept</span> <span style="color:#f92672">:</span> val{<span style="color:#ae81ff">0</span>} {}
 
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">set</span>(size_t bit) <span style="color:#66d9ef">noexcept</span>
     {
-        val <span style="color:#f92672">|</span><span style="color:#f92672">=</span> mask(bit);
+        val <span style="color:#f92672">|=</span> mask(bit);
     }
 
     <span style="color:#a6e22e">[[nodiscard]]</span>
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> isset(size_t bit) <span style="color:#66d9ef">noexcept</span>
     {
-        <span style="color:#66d9ef">return</span> (val <span style="color:#f92672">&amp;</span> mask(bit)) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0u</span>;
+        <span style="color:#66d9ef">return</span> (val <span style="color:#f92672">&amp;</span> mask(bit)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0u</span>;
     }
 
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clear</span>() <span style="color:#66d9ef">noexcept</span>
@@ -255,13 +260,13 @@
     <span style="color:#a6e22e">[[nodiscard]]</span>
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> none() <span style="color:#66d9ef">noexcept</span>
     {
-        <span style="color:#66d9ef">return</span> val <span style="color:#f92672">=</span><span style="color:#f92672">=</span> value_type{<span style="color:#ae81ff">0</span>};
+        <span style="color:#66d9ef">return</span> val <span style="color:#f92672">==</span> value_type{<span style="color:#ae81ff">0</span>};
     }
 
     <span style="color:#a6e22e">[[nodiscard]]</span>
     <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">bool</span> all() <span style="color:#66d9ef">noexcept</span>
     {
-        <span style="color:#66d9ef">return</span> val <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#f92672">~</span>value_type{<span style="color:#ae81ff">0</span>};
+        <span style="color:#66d9ef">return</span> val <span style="color:#f92672">==</span> <span style="color:#f92672">~</span>value_type{<span style="color:#ae81ff">0</span>};
     }
 
 <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
@@ -269,56 +274,56 @@
     <span style="color:#66d9ef">constexpr</span> value_type mask(size_t off) <span style="color:#66d9ef">noexcept</span>
     {
         assert(off <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">sizeof</span>(value_type)<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>);
-        <span style="color:#66d9ef">return</span> value_type{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> off;
+        <span style="color:#66d9ef">return</span> value_type{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">&lt;&lt;</span> off;
     }
 
     value_type val;
 };
 
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;</span>  {};
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint16_t</span><span style="color:#f92672">&gt;</span> {};
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span> {};
-<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint64_t</span><span style="color:#f92672">&gt;</span> {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;</span>  {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint16_t</span><span style="color:#f92672">&gt;</span> {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span> {};
+<span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Storage</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> StorageBase<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint64_t</span><span style="color:#f92672">&gt;</span> {};
 
 } <span style="color:#75715e">// namespace detail
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span>size_t MaxIndex<span style="color:#f92672">&gt;</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BitVector</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> detail<span style="color:#f92672">:</span><span style="color:#f92672">:</span>Storage<span style="color:#f92672">&lt;</span>MaxIndex <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span> {};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BitVector</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> detail<span style="color:#f92672">::</span>Storage<span style="color:#f92672">&lt;</span>MaxIndex <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span> {};
 
 <span style="color:#75715e">// usage
-</span><span style="color:#75715e"></span>TEST_CASE(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Set and clear bits first BitVector</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[column1_2]</span><span style="color:#e6db74">&#34;</span>)
+</span><span style="color:#75715e"></span>TEST_CASE(<span style="color:#e6db74">&#34;Set and clear bits first BitVector&#34;</span>, <span style="color:#e6db74">&#34;[column1_2]&#34;</span>)
 {
     BitVector<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">32</span><span style="color:#f92672">&gt;</span> bv;
-    REQUIRE(bv.isset(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> false);
-    REQUIRE(bv.none() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> true);
-    REQUIRE(bv.all() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> false);
+    REQUIRE(bv.isset(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">==</span> false);
+    REQUIRE(bv.none() <span style="color:#f92672">==</span> true);
+    REQUIRE(bv.all() <span style="color:#f92672">==</span> false);
 
     bv.set(<span style="color:#ae81ff">4</span>);
-    assert(bv.isset(<span style="color:#ae81ff">4</span>) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> true);
-    assert(bv.isset(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span><span style="color:#f92672">=</span> false);
-    assert(bv.none() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> false);
-    assert(bv.all() <span style="color:#f92672">=</span><span style="color:#f92672">=</span> false);
+    assert(bv.isset(<span style="color:#ae81ff">4</span>) <span style="color:#f92672">==</span> true);
+    assert(bv.isset(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">==</span> false);
+    assert(bv.none() <span style="color:#f92672">==</span> false);
+    assert(bv.all() <span style="color:#f92672">==</span> false);
 }
 </code></pre></div><h1 id="problem-3">Problem #3</h1>
 <p>Q: Run-time efficiency was an important part of the design goal, and the resulting program was efficient enough. Implement the bitmap sort on your system and measure its run time; how does it compare to the system sort and to the sorts in Problem 1? Assume that <em>n</em>=10,000,000, and that the input file contains 1,000,000 integers.</p>
 <h2 id="bitmap-sort">BitMap Sort</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;bit_vector.h&#34; // from problem #2</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;bit_vector.h&#34; // from problem #2</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">constexpr</span> size_t MaxValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span><span style="color:#f92672">*</span> argv) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
     BitVector<span style="color:#f92672">&lt;</span>MaxValue<span style="color:#f92672">&gt;</span> vec;
     <span style="color:#66d9ef">int</span> val;
     <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
-    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL) {
+    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!=</span> NULL) {
         val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
         vec.set(val);
     }
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MaxValue; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MaxValue; <span style="color:#f92672">++</span>i) {
         <span style="color:#66d9ef">if</span> (vec.isset(i)) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
         }
     }
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
@@ -355,100 +360,100 @@
 </tbody>
 </table>
 <h1 id="problem-4">Problem 4</h1>
-<p>If you take Problem 3 seriously, you will face the problem of generating <em>k</em> integers less than <em>n</em> without duplicates.  The simplest approach uses the first <em>k</em> positive integers.  This extreme data set wo't alter the run time of the bitmap method by much, but it might skew the run time of a system sort. How could you generate a file of k unique random integers between 0 and <em>n</em> - 1 in random order? Strive for a short program that is also efficient.</p>
+<p>If you take Problem 3 seriously, you will face the problem of generating <em>k</em> integers less than <em>n</em> without duplicates.  The simplest approach uses the first <em>k</em> positive integers.  This extreme data set wo&rsquo;t alter the run time of the bitmap method by much, but it might skew the run time of a system sort. How could you generate a file of k unique random integers between 0 and <em>n</em> - 1 in random order? Strive for a short program that is also efficient.</p>
 <h2 id="numpy-solution">Numpy solution</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 
 M <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>
 N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>
 vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(range(M), N, replace<span style="color:#f92672">=</span>False)
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join([str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> vals]))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join([str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> vals]))
 </code></pre></div><h2 id="c-solution">C++ Solution</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;random&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;random&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span><span style="color:#f92672">*</span> argv)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
 {
     <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
     <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
 
     <span style="color:#75715e">// generate numbers 0..k-1
-</span><span style="color:#75715e"></span>    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> range;
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> range;
     range.reserve(k);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; <span style="color:#f92672">++</span>i) {
         range.push_back(i);
     }
 
     <span style="color:#75715e">// pick 2 random indices and swap k/2 times
-</span><span style="color:#75715e"></span>    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>random_device rd;
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>mt19937 gen(rd());
-    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>uniform_int_distribution<span style="color:#f92672">&lt;</span><span style="color:#f92672">&gt;</span> dis(<span style="color:#ae81ff">0</span>, k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
+</span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>random_device rd;
+    std<span style="color:#f92672">::</span>mt19937 gen(rd());
+    std<span style="color:#f92672">::</span>uniform_int_distribution<span style="color:#f92672">&lt;&gt;</span> dis(<span style="color:#ae81ff">0</span>, k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#f92672">++</span>i) {
         <span style="color:#66d9ef">int</span> p1 <span style="color:#f92672">=</span> dis(gen);
         <span style="color:#66d9ef">int</span> p2 <span style="color:#f92672">=</span> dis(gen);
-        std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>iter_swap(<span style="color:#f92672">&amp;</span>range[p1], <span style="color:#f92672">&amp;</span>range[p2]);
+        std<span style="color:#f92672">::</span>iter_swap(<span style="color:#f92672">&amp;</span>range[p1], <span style="color:#f92672">&amp;</span>range[p2]);
     }
 
     <span style="color:#75715e">// take first n elements as output
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, range[i]);
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; <span style="color:#f92672">++</span>i) {
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, range[i]);
     }
 
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
 </code></pre></div><h1 id="problem-5">Problem 5</h1>
 <p>The programmer said that he had about a megabyte of free storage, but the code we sketched uses 1.25 megabytes. He was able to scrounge the extra space without much trouble. If the megabyte had been a hard and fast boundary, what would you have recommended? What is the run time of your algorithm?</p>
-<p>My initial thought is to just make multiple passes over the input file.  This technique doesn't work if you need an online algorithm though.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdint&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+<p>My initial thought is to just make multiple passes over the input file.  This technique doesn&rsquo;t work if you need an online algorithm though.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdint&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> Limit <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>; <span style="color:#75715e">// 1 MB
+<span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> Limit <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">20</span>; <span style="color:#75715e">// 1 MB
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> MaxValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span><span style="color:#f92672">*</span> argv)
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
 {
-    <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+    <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>)
     {
-        fprintf(stderr, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Usage: %s &lt;FILE&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
+        fprintf(stderr, <span style="color:#e6db74">&#34;Usage: %s &lt;FILE&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
         exit(<span style="color:#ae81ff">1</span>);
     }
 
-    FILE<span style="color:#f92672">*</span> fp <span style="color:#f92672">=</span> fopen(argv[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;</span>);
+    FILE<span style="color:#f92672">*</span> fp <span style="color:#f92672">=</span> fopen(argv[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;r&#34;</span>);
     <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>fp)
     {
-        fprintf(stderr, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Unable to open file: &#39;%s&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]);
+        fprintf(stderr, <span style="color:#e6db74">&#34;Unable to open file: &#39;%s&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">1</span>]);
         exit(<span style="color:#ae81ff">1</span>);
     }
 
     <span style="color:#66d9ef">uint32_t</span> bitmap[Limit<span style="color:#f92672">/</span><span style="color:#ae81ff">32</span>];
     <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
     <span style="color:#66d9ef">int</span> val;
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> base <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; base <span style="color:#f92672">&lt;</span> MaxValue; base <span style="color:#f92672">+</span><span style="color:#f92672">=</span> Limit)
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> base <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; base <span style="color:#f92672">&lt;</span> MaxValue; base <span style="color:#f92672">+=</span> Limit)
     {
         rewind(fp);
         memset(<span style="color:#f92672">&amp;</span>bitmap[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(bitmap));
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> lo <span style="color:#f92672">=</span> base;
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> hi <span style="color:#f92672">=</span> base <span style="color:#f92672">+</span> Limit;
 
-        <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), fp) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL)
+        <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), fp) <span style="color:#f92672">!=</span> NULL)
         {
             val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(val <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> lo <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> val <span style="color:#f92672">&lt;</span> hi))
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>(val <span style="color:#f92672">&gt;=</span> lo <span style="color:#f92672">&amp;&amp;</span> val <span style="color:#f92672">&lt;</span> hi))
                 <span style="color:#66d9ef">continue</span>;
-            val <span style="color:#f92672">-</span><span style="color:#f92672">=</span> base;
+            val <span style="color:#f92672">-=</span> base;
             <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> val <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span>;
             <span style="color:#66d9ef">int</span> off <span style="color:#f92672">=</span> val <span style="color:#f92672">%</span> <span style="color:#ae81ff">32</span>;
-            bitmap[idx] <span style="color:#f92672">|</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> off;
+            bitmap[idx] <span style="color:#f92672">|=</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> off;
         }
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Limit; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i)
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Limit; <span style="color:#f92672">++</span>i)
         {
             <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> i <span style="color:#f92672">/</span> <span style="color:#ae81ff">32</span>;
             <span style="color:#66d9ef">int</span> off <span style="color:#f92672">=</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">32</span>;
-            <span style="color:#66d9ef">if</span> ((bitmap[idx] <span style="color:#f92672">&amp;</span> (<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> off)) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">if</span> ((bitmap[idx] <span style="color:#f92672">&amp;</span> (<span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> off)) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
             {
-                printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i <span style="color:#f92672">+</span> base);
+                printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i <span style="color:#f92672">+</span> base);
             }
         }
     }
@@ -461,13 +466,13 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 <p>Idea is to keep 10 million 4-bit cells, each time a number is seen, increment the appropriate cell.</p>
 <h2 id="implementation-1-bitfields-using-explicit-widths">Implementation #1: bitfields using explicit widths</h2>
 <p>We can let the compiler generate the shifts and masks for us.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstdint&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cassert&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cinttypes&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdint&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cassert&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cinttypes&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;memory&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> MaxValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
 <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">int</span> Elements <span style="color:#f92672">=</span> MaxValue <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// using 4-bits per number
@@ -479,27 +484,27 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 <span style="color:#66d9ef">static</span> EE cnts[Elements];
 
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span><span style="color:#f92672">*</span> argv) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
     <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
     memset(<span style="color:#f92672">&amp;</span>cnts[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(cnts));
-    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL) {
+    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!=</span> NULL) {
         <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
         <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> val <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">if</span> (val <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#f92672">+</span><span style="color:#f92672">+</span>cnts[idx].lo;
-            assert(cnts[idx].lo <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">More than 10 duplicates!</span><span style="color:#e6db74">&#34;</span>);
+        <span style="color:#66d9ef">if</span> (val <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#f92672">++</span>cnts[idx].lo;
+            assert(cnts[idx].lo <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;More than 10 duplicates!&#34;</span>);
         } <span style="color:#66d9ef">else</span> {
-            <span style="color:#f92672">+</span><span style="color:#f92672">+</span>cnts[idx].hi;
-            assert(cnts[idx].hi <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">More than 10 duplicates!</span><span style="color:#e6db74">&#34;</span>);
+            <span style="color:#f92672">++</span>cnts[idx].hi;
+            assert(cnts[idx].hi <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;More than 10 duplicates!&#34;</span>);
         }
     }
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Elements; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> cnts[i].lo; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>p) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Elements; <span style="color:#f92672">++</span>i) {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> cnts[i].lo; <span style="color:#f92672">++</span>p) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i);
         }
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> cnts[i].hi; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>p) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> cnts[i].hi; <span style="color:#f92672">++</span>p) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
         }
     }
 
@@ -509,30 +514,30 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 </code></pre></div><h2 id="implementation-2-shift-and-mask-by-hand">Implementation #2: shift and mask by hand</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> cnts[Elements];
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span><span style="color:#f92672">*</span> argv) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
     <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
     memset(<span style="color:#f92672">&amp;</span>cnts[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(cnts));
-    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL) {
+    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!=</span> NULL) {
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> val <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">uint8_t</span> lo <span style="color:#f92672">=</span> (cnts[idx] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
-        <span style="color:#66d9ef">uint8_t</span> hi <span style="color:#f92672">=</span> (cnts[idx] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
-        <span style="color:#66d9ef">if</span> (val <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#f92672">+</span><span style="color:#f92672">+</span>lo;
+        <span style="color:#66d9ef">uint8_t</span> lo <span style="color:#f92672">=</span> (cnts[idx] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
+        <span style="color:#66d9ef">uint8_t</span> hi <span style="color:#f92672">=</span> (cnts[idx] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
+        <span style="color:#66d9ef">if</span> (val <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#f92672">++</span>lo;
         } <span style="color:#66d9ef">else</span> {
-            <span style="color:#f92672">+</span><span style="color:#f92672">+</span>hi;
+            <span style="color:#f92672">++</span>hi;
         }
-        cnts[idx] <span style="color:#f92672">=</span> (hi <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">|</span> (lo <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>);
+        cnts[idx] <span style="color:#f92672">=</span> (hi <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">|</span> (lo <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0</span>);
     }
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Elements; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-        <span style="color:#66d9ef">int</span> lo <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
-        <span style="color:#66d9ef">int</span> hi <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> lo; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>p) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Elements; <span style="color:#f92672">++</span>i) {
+        <span style="color:#66d9ef">int</span> lo <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
+        <span style="color:#66d9ef">int</span> hi <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0Fu</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> lo; <span style="color:#f92672">++</span>p) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i);
         }
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> hi; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>p) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> hi; <span style="color:#f92672">++</span>p) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
         }
     }
 
@@ -540,32 +545,32 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 }
 </code></pre></div><h2 id="implementation-3-safety-off">Implementation #3: Safety off</h2>
 <p>Since we are storing the odd-value counters in the upper 4-bits of each byte, we can take advantage of the fact that adding 2^4 (=16) will never increment bits in the lower nibble (except in the case of overflow).  This is analogous to adding 10^x to a base 10 number; repeatedly adding 10,000 to a number will never change the bottom 4 digits.</p>
-<p>This method is slightly faster, but is less safe because we aren't verifying that there aren't more than 10 duplicates.</p>
+<p>This method is slightly faster, but is less safe because we aren&rsquo;t verifying that there aren&rsquo;t more than 10 duplicates.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint8_t</span> cnts[Elements];
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span><span style="color:#f92672">*</span> argv) {
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv) {
     <span style="color:#66d9ef">char</span> input[<span style="color:#ae81ff">256</span>];
     memset(<span style="color:#f92672">&amp;</span>cnts[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(cnts));
-    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> NULL) {
+    <span style="color:#66d9ef">while</span> (fgets(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">sizeof</span>(input), stdin) <span style="color:#f92672">!=</span> NULL) {
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> atoi(<span style="color:#f92672">&amp;</span>input[<span style="color:#ae81ff">0</span>]);
         <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> val <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">if</span> (val <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) {
-            cnts[idx] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1u</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">if</span> (val <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            cnts[idx] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1u</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0</span>;
         } <span style="color:#66d9ef">else</span> {
-            cnts[idx] <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1u</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>;
+            cnts[idx] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1u</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>;
         }
-        assert(((cnts[idx] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>) <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">More than 10 duplicates!</span><span style="color:#e6db74">&#34;</span>);
-        assert(((cnts[idx] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>) <span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">More than 10 duplicates!</span><span style="color:#e6db74">&#34;</span>);
+        assert(((cnts[idx] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;More than 10 duplicates!&#34;</span>);
+        assert(((cnts[idx] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;More than 10 duplicates!&#34;</span>);
     }
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Elements; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i) {
-        <span style="color:#66d9ef">int</span> lo <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>;
-        <span style="color:#66d9ef">int</span> hi <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>;
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> lo; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>p) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i);
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Elements; <span style="color:#f92672">++</span>i) {
+        <span style="color:#66d9ef">int</span> lo <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>;
+        <span style="color:#66d9ef">int</span> hi <span style="color:#f92672">=</span> (cnts[i] <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x0F</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> lo; <span style="color:#f92672">++</span>p) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i);
         }
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> hi; <span style="color:#f92672">+</span><span style="color:#f92672">+</span>p) {
-            printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; p <span style="color:#f92672">&lt;</span> hi; <span style="color:#f92672">++</span>p) {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
         }
     }
 
@@ -576,7 +581,7 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">EE</span> {
     <span style="color:#66d9ef">uint8_t</span> count: <span style="color:#ae81ff">4</span>;
 } __attribute__((packed));
-</code></pre></div><p>but that doesn't appear to be the case as you can see in this <a href="https://gcc.godbolt.org/z/UVcr2y">Compiler Explorer</a> example. I did stumble on a <a href="https://github.com/gpakosz/PackedArray">library</a> that might help with this situation, but I didn't really explore it.</p>
+</code></pre></div><p>but that doesn&rsquo;t appear to be the case as you can see in this <a href="https://gcc.godbolt.org/z/UVcr2y">Compiler Explorer</a> example. I did stumble on a <a href="https://github.com/gpakosz/PackedArray">library</a> that might help with this situation, but I didn&rsquo;t really explore it.</p>
 <h1 id="problem-7">Problem 7</h1>
 <p>[R. Weil] The program as sketeched has several flaws.  The first is that it assumes that no integer appears twice in the input. What happens if one does show up more than once? How could the program be modified to call an error function in that case? What happens when an input integer is less than zero or greater than or equal to n? What if an input is not numeric? What should a program do under those circumstances? What other sanity checks could the program incorporate? Describe small data sets taht test the program, including its proper handling of these and other ill-behaved cases.</p>
 <h1 id="problem-8">Problem 8</h1>
@@ -596,19 +601,19 @@ vals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>
         from[i] <span style="color:#f92672">=</span> top;
         to[top] <span style="color:#f92672">=</span> i;
         data[i] <span style="color:#f92672">=</span> value;
-        <span style="color:#f92672">+</span><span style="color:#f92672">+</span>top;
+        <span style="color:#f92672">++</span>top;
     }
 
     <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">is_initialized</span>(size_t i) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span>
     {
-        <span style="color:#66d9ef">return</span> from[i] <span style="color:#f92672">&lt;</span> top <span style="color:#f92672">&amp;</span><span style="color:#f92672">&amp;</span> to[from[i]] <span style="color:#f92672">=</span><span style="color:#f92672">=</span> i;
+        <span style="color:#66d9ef">return</span> from[i] <span style="color:#f92672">&lt;</span> top <span style="color:#f92672">&amp;&amp;</span> to[from[i]] <span style="color:#f92672">==</span> i;
     }
 };
 </code></pre></div><h1 id="problem-10">Problem 10</h1>
-<p>Before the days of low-cost overnight deliveries, a store allowed customers to order items over the telephone, which they picked up a few days later. The store's database used the customer's telephone number as the primary key for retrieval (customers know their phone numbers and the keys are close to unique). How would you organize the store's database to allow orders to be inserted and retrieved efficiently?</p>
+<p>Before the days of low-cost overnight deliveries, a store allowed customers to order items over the telephone, which they picked up a few days later. The store&rsquo;s database used the customer&rsquo;s telephone number as the primary key for retrieval (customers know their phone numbers and the keys are close to unique). How would you organize the store&rsquo;s database to allow orders to be inserted and retrieved efficiently?</p>
 <p>Use last n-digits as a hash.</p>
 <h1 id="problem-11">Problem 11</h1>
-<p>In the early 1980's Lockheed engineers transmitted daily a dozen drawings from a Computer Aided Design (CAD) system in their Sunnyvale, California, plant to a test station in Santa Cruz. Although the facilities were just 25 miles apart, an automobile courier service took over an hour (due to traffic jams and mountain roads) and cost a hundred dollars per day. Propose alternative data transmission schemes and estimate their cost.</p>
+<p>In the early 1980&rsquo;s Lockheed engineers transmitted daily a dozen drawings from a Computer Aided Design (CAD) system in their Sunnyvale, California, plant to a test station in Santa Cruz. Although the facilities were just 25 miles apart, an automobile courier service took over an hour (due to traffic jams and mountain roads) and cost a hundred dollars per day. Propose alternative data transmission schemes and estimate their cost.</p>
 <h1 id="problem-12">Problem 12</h1>
 <p>Pioneers of human space flight soon realized the need for writing implements that work well in the extreme environment of space. A popular urban legend asserts that the United States National Aeronautics and Space Administration (NASA) solved the problem with a million dollars of research to develop a special pen. According to the legend, how did the Soviets solve the same problem?</p>
 <p>A pencil.</p>
